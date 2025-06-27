@@ -3,6 +3,93 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Paleta Principal - Dourado Elegante */
+  --primary-gold: #866D36;
+  --primary-gold-light: #B59C62;
+  --primary-gold-dark: #624F26;
+  
+  /* Tons de Dourado */
+  --gold-50: #FBF8F0;
+  --gold-100: #F7F1E1;
+  --gold-200: #EFE3C3;
+  --gold-300: #E2D0A4;
+  --gold-400: #CEBA7B;
+  --gold-500: #B59C62;
+  --gold-600: #866D36;
+  --gold-700: #624F26;
+  --gold-800: #4A3C1D;
+  --gold-900: #2D240F;
+  
+  /* Tons Neutros Sofisticados */
+  --gray-50: #FAFAF7;
+  --gray-100: #F5F4F0;
+  --gray-200: #E8E6DD;
+  --gray-300: #D3D0C5;
+  --gray-400: #AEA99A;
+  --gray-500: #8C8677;
+  --gray-600: #6F6A5A;
+  --gray-700: #504B3D;
+  --gray-800: #383426;
+  --gray-900: #201E16;
+  
+  /* Cores de Apoio */
+  --teal-50: #F0FDF9;
+  --teal-500: #20B2AA;
+  --teal-600: #0E8C84;
+  
+  --green-50: #F3FAF3;
+  --green-500: #7D9D64;
+  --green-600: #5E7A48;
+  
+  /* Gradientes Dourados */
+  --gradient-primary: linear-gradient(135deg, #866D36 0%, #B59C62 50%, #CEBA7B 100%);
+  --gradient-subtle: linear-gradient(135deg, #FBF8F0 0%, #F7F1E1 50%, #EFE3C3 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FBF8F0 100%);
+  
+  /* Sombras Profissionais */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-gold: 0 4px 14px 0 rgba(134, 109, 54, 0.15);
+  --shadow-gold-lg: 0 10px 25px -3px rgba(134, 109, 54, 0.2), 0 4px 6px -2px rgba(134, 109, 54, 0.1);
+  
+  /* Transições Framer Motion */
+  --transition-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-duration-fast: 0.2s;
+  --transition-duration-base: 0.4s;
+  --transition-duration-slow: 0.6s;
+
+  /* Espaçamentos Consistentes */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  
+  /* Tipografia */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  
+  /* Raios de Borda */
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-2xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
 }
 
 @theme inline {
@@ -22,5 +109,536 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
+
+/* Scrollbar Clean */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Seleção de texto */
+::selection {
+  background-color: var(--gold-200);
+  color: var(--gold-800);
+}
+
+::-moz-selection {
+  background-color: var(--gold-200);
+  color: var(--gold-800);
+}
+
+/* ===== TRANSIÇÕES SUAVES FRAMER MOTION ===== */
+.framer-smooth {
+  transition-timing-function: var(--transition-ease-out);
+  will-change: transform, opacity;
+}
+
+.framer-bounce {
+  transition-timing-function: var(--transition-bounce);
+  will-change: transform;
+}
+
+/* Propriedades para melhor desempenho em transformações */
+.optimize-animation {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Prevenção de CLS (Cumulative Layout Shift) */
+.prevent-cls {
+  contain: content;
+}
+
+/* Placeholder com animação de pulso */
+.placeholder-pulse {
+  animation: placeholderPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: linear-gradient(
+    to right,
+    var(--gray-200) 0%,
+    var(--gray-100) 50%,
+    var(--gray-200) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes placeholderPulse {
+  0% { background-position: 0% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === SISTEMA DE TIPOGRAFIA === */
+.heading-1 {
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.heading-2 {
+  font-size: var(--font-size-4xl);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.heading-3 {
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.heading-4 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.heading-5 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.body-large {
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+}
+
+.body-base {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.body-small {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.caption {
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+
+/* === SISTEMA DE BOTÕES === */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-gold-lg);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary-gold);
+  border: 2px solid var(--primary-gold);
+  padding: calc(var(--spacing-md) - 2px) calc(var(--spacing-xl) - 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--gold-50);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+  padding: calc(var(--spacing-md) - 1px) calc(var(--spacing-xl) - 1px);
+}
+
+.btn-outline:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--gray-700);
+  padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.btn-ghost:hover {
+  background: var(--gray-100);
+}
+
+/* Tamanhos de botão */
+.btn-sm {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.btn-lg {
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+}
+
+/* === SISTEMA DE CARDS === */
+.card {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--gray-300);
+}
+
+.card-elevated {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.card-gradient {
+  background: var(--gradient-card);
+  border: 1px solid var(--gold-100);
+}
+
+.card-padding {
+  padding: var(--spacing-xl);
+}
+
+.card-padding-lg {
+  padding: var(--spacing-2xl);
+}
+
+/* === UTILITÁRIOS === */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.surface-1 {
+  background: var(--gray-50);
+}
+
+.surface-2 {
+  background: var(--gold-50);
+}
+
+/* === ANIMAÇÕES MINIMALISTAS === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Delayed animations */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Hover animations */
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .heading-2 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .btn-base {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* === ESTADOS DE FOCO === */
+.focus-ring:focus {
+  outline: 2px solid var(--primary-gold);
+  outline-offset: 2px;
+}
+
+/* === SMOOTH SCROLL === */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ======================
+   ANIMATIONS
+   ====================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Delayed animations */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Hover animations */
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+/* ======================
+   RESPONSIVE DESIGN
+   ====================== */
+
+/* ... existing code ... */
