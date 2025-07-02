@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/solid';
 
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+  icon?: React.ComponentType<React.ComponentProps<typeof HomeIcon>>;
+}
+
 const Breadcrumbs = () => {
   const pathname = usePathname();
   
@@ -16,22 +22,24 @@ const Breadcrumbs = () => {
     'tratamentos': 'Tratamentos',
     'equipe': 'Nossa Equipe',
     'contato': 'Contato',
+    'sobre': 'Sobre Nós',
+    'blog': 'Blog'
   };
 
   // Gerar caminhos baseados na URL atual
-  const generateBreadcrumbs = () => {
+  const generateBreadcrumbs = (): BreadcrumbItem[] => {
+    if (!pathname) return [{ name: 'Início', href: '/', icon: HomeIcon }];
     const pathSegments = pathname.split('/').filter(segment => segment !== '');
-    const breadcrumbs = [
+    const breadcrumbs: BreadcrumbItem[] = [
       { name: 'Início', href: '/', icon: HomeIcon }
     ];
 
     let currentPath = '';
-    pathSegments.forEach((segment, index) => {
+    pathSegments.forEach((segment) => {
       currentPath += `/${segment}`;
       breadcrumbs.push({
         name: routeNames[segment] || segment.charAt(0).toUpperCase() + segment.slice(1),
-        href: currentPath,
-        icon: null
+        href: currentPath
       });
     });
 

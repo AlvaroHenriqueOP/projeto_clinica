@@ -6,14 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "vercel",
+    "deploy:prod": "vercel --prod",
+    "compress:blog": "node scripts/compress-images.js",
+    "compress:all": "node scripts/compress-all-images.js",
+    "replace:images": "node scripts/replace-with-compressed.js",
+    "clean": "node -e \"try { require('fs').rmSync('.next', { recursive: true }); console.log('.next removido'); } catch(e) { console.log('.next não encontrado'); } try { require('fs').rmSync('node_modules/.cache', { recursive: true }); console.log('cache removido'); } catch(e) { console.log('cache não encontrado'); }\"",
+    "dev:clean": "npm run clean && npm run dev",
+    "build:clean": "npm run clean && npm run build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "framer-motion": "^12.19.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.20.1",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.2",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

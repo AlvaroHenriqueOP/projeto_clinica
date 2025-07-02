@@ -8,16 +8,16 @@ export const fadeInVariants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
-    transition: { duration: 0.6, ease: 'easeOut' }
+    transition: { duration: 0.5, ease: 'easeOut' }
   }
 };
 
 export const fadeInUpVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' }
+    transition: { duration: 0.5, ease: 'easeOut' }
   }
 };
 
@@ -26,15 +26,22 @@ export const staggerChildrenVariants = {
   visible: { 
     opacity: 1,
     transition: { 
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.08,
+      delayChildren: 0.1
     }
   }
 };
 
 export const scaleOnHoverVariants = {
   rest: { scale: 1 },
-  hover: { scale: 1.05 }
+  hover: { scale: 1.03 }
+};
+
+// Configuração padrão para viewport detection (otimizada)
+const defaultViewportOptions = {
+  once: true,
+  amount: 0.2, // Reduzir para iniciar animações mais cedo
+  margin: "0px 0px -100px 0px" // Melhorar detecção durante scroll
 };
 
 // Componentes de animação reutilizáveis
@@ -44,21 +51,25 @@ interface AnimatedElementProps {
   delay?: number;
   duration?: number;
   once?: boolean;
+  amount?: number;
+  margin?: string;
 }
 
 export const FadeIn: React.FC<AnimatedElementProps> = ({ 
   children, 
   className = '', 
   delay = 0, 
-  duration = 0.6,
-  once = true 
+  duration = 0.5,
+  once = true,
+  amount = 0.2,
+  margin = "0px 0px -100px 0px"
 }) => {
   return (
     <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once }}
+      viewport={{ once, amount, margin }}
       variants={{
         hidden: { opacity: 0 },
         visible: { 
@@ -76,17 +87,19 @@ export const FadeInUp: React.FC<AnimatedElementProps> = ({
   children, 
   className = '', 
   delay = 0, 
-  duration = 0.6,
-  once = true 
+  duration = 0.5,
+  once = true,
+  amount = 0.2,
+  margin = "0px 0px -100px 0px"
 }) => {
   return (
     <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once }}
+      viewport={{ once, amount, margin }}
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 15 },
         visible: { 
           opacity: 1, 
           y: 0,
@@ -102,21 +115,23 @@ export const FadeInUp: React.FC<AnimatedElementProps> = ({
 export const StaggerContainer: React.FC<AnimatedElementProps> = ({ 
   children, 
   className = '', 
-  delay = 0.2, 
-  once = true 
+  delay = 0.1, 
+  once = true,
+  amount = 0.2,
+  margin = "0px 0px -100px 0px"
 }) => {
   return (
     <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once }}
+      viewport={{ once, amount, margin }}
       variants={{
         hidden: { opacity: 0 },
         visible: { 
           opacity: 1,
           transition: { 
-            staggerChildren: 0.1,
+            staggerChildren: 0.08,
             delayChildren: delay
           }
         }
@@ -162,10 +177,10 @@ export const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
   return (
     <m.div
       className={`${className} ${height} ${width} flex items-center justify-center rounded-lg overflow-hidden relative placeholder-pulse`}
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
+      viewport={defaultViewportOptions}
+      transition={{ duration: 0.4, delay }}
     >
       <svg className="w-1/4 h-1/4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
         <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v8l4-2 4 4 4-6 4 4V6H4z" />

@@ -1,0 +1,10 @@
+# Regras para todos os crawlers
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dentalcorp.com.br/sitemap.xml
+
+# Diretórios/arquivos que não devem ser indexados
+Disallow: /api/
+Disallow: /admin/ 

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { m } from '../shared/motion';
 import { PlaceholderImage } from '../shared/AnimationUtils';
 
@@ -13,30 +14,58 @@ interface TestimonialProps {
   image: string;
 }
 
+interface BeforeAfterProps {
+  id: number;
+  title: string;
+  treatment: string;
+  image: string;
+}
+
 const testimonials: TestimonialProps[] = [
   {
     id: 1,
-    name: 'Carolina Santos',
+    name: 'Alvaro Henrique',
     role: 'Paciente desde 2020',
     quote: 'Experiência incrível! A equipe é extremamente profissional e cuidadosa. O ambiente é moderno e acolhedor, me deixou muito à vontade.',
     rating: 5,
-    image: '/images/testimonials/testimonial-1.jpg', 
+    image: '/images/depoimentos/depoimentos.jpg', 
   },
   {
     id: 2,
-    name: 'Roberto Almeida',
+    name: 'Natalia Gomes',
     role: 'Paciente desde 2019',
     quote: 'Finalmente consegui superar meu medo de dentista. A equipe soube lidar com minha ansiedade e o tratamento foi praticamente indolor.',
     rating: 5,
-    image: '/images/testimonials/testimonial-2.jpg',
+    image: '/images/depoimentos/depoimentos2.jpg',
   },
   {
     id: 3,
-    name: 'Fernanda Costa',
+    name: 'Fernando Costa',
     role: 'Paciente desde 2021',
     quote: 'Resultados perfeitos no meu clareamento dental! Agora tenho confiança para sorrir em qualquer situação. Recomendo fortemente!',
     rating: 5,
-    image: '/images/testimonials/testimonial-3.jpg',
+    image: '/images/depoimentos/depoimentos3.jpg',
+  }
+];
+
+const beforeAfterCases: BeforeAfterProps[] = [
+  {
+    id: 1,
+    title: 'Clareamento Dental',
+    treatment: 'Tratamento de 3 sessões',
+    image: '/images/resultados/antesedepois.png'
+  },
+  {
+    id: 2,
+    title: 'Implante Dentário',
+    treatment: 'Substituição de dente perdido',
+    image: '/images/resultados/antesedepois2.png'
+  },
+  {
+    id: 3,
+    title: 'Ortodontia',
+    treatment: 'Alinhamento com aparelho transparente',
+    image: '/images/resultados/antesedepois3.png'
   }
 ];
 
@@ -98,8 +127,23 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto max-w-7xl px-4">
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      {/* Fundo com degradê */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F9F5EC] via-[#F5F0E5] to-[#EEEAD9] -z-10">
+        {/* Elementos decorativos */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#866D36]/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#866D36]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+        
+        {/* Padrão de pontos */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="h-full w-full" style={{ 
+            backgroundImage: 'radial-gradient(#866D36 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+      </div>
+
+      <div className="container mx-auto max-w-7xl px-4 relative">
         <m.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -135,7 +179,7 @@ const Testimonials: React.FC = () => {
         </m.div>
 
         <m.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -144,7 +188,7 @@ const Testimonials: React.FC = () => {
           {testimonials.map((testimonial) => (
             <m.div
               key={testimonial.id}
-              className="bg-gray-50 rounded-lg p-6 shadow-md relative"
+              className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-md border border-[#866D36]/10 relative"
               variants={testimonialVariants}
               whileHover="hover"
             >
@@ -173,14 +217,14 @@ const Testimonials: React.FC = () => {
               </m.p>
 
               <div className="flex items-center">
-                <div className="flex-shrink-0 mr-3 w-12 h-12 overflow-hidden rounded-full border-2 border-[#866D36]">
-                  {/* Imagem Placeholder para os depoimentos */}
-                  <PlaceholderImage 
-                    className="bg-gray-200" 
-                    height="h-12" 
-                    width="w-12" 
-                    label={`Foto ${testimonial.name}`}
-                    delay={0.3}
+                <div className="flex-shrink-0 mr-3 w-12 h-12 overflow-hidden rounded-full border-2 border-[#866D36] relative">
+                  <Image
+                    src={testimonial.image}
+                    alt={`Foto de ${testimonial.name}`}
+                    fill
+                    loading="lazy"
+                    className="object-cover object-center"
+                    sizes="48px"
                   />
                 </div>
                 <m.div
@@ -196,23 +240,66 @@ const Testimonials: React.FC = () => {
           ))}
         </m.div>
 
+        {/* Seção Antes e Depois */}
         <m.div 
-          className="text-center mt-12"
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <m.h3 
+            className="text-2xl md:text-3xl font-bold text-gray-800 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Resultados <span className="text-[#866D36]">Transformadores</span>
+          </m.h3>
+          <m.p 
+            className="text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Veja alguns dos resultados reais dos nossos tratamentos
+          </m.p>
+        </m.div>
+
+        <m.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.4, staggerChildren: 0.1 }}
         >
-          <m.button
-            className="text-[#866D36] border-2 border-[#866D36] px-6 py-3 rounded-md font-medium hover:bg-[#866D36] hover:text-white transition-colors duration-300 inline-flex items-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>Ver Mais Depoimentos</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </m.button>
+          {beforeAfterCases.map((case_, index) => (
+            <m.div
+              key={case_.id}
+              className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-md border border-[#866D36]/10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">{case_.title}</h4>
+              <p className="text-sm text-[#866D36] mb-4">{case_.treatment}</p>
+              
+              <div className="relative w-full h-48 md:h-56 overflow-hidden rounded-lg">
+                <Image
+                  src={case_.image}
+                  alt={`Antes e depois - ${case_.title}`}
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 300px"
+                />
+              </div>
+            </m.div>
+          ))}
         </m.div>
       </div>
     </section>

@@ -642,3 +642,15 @@ html {
    ====================== */
 
 /* ... existing code ... */
+
+@layer utilities {
+  /* Animações */
+  @keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s infinite alternate;
+  }
+}

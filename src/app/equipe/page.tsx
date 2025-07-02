@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image'; // Descomentado para usar as imagens reais
+import { Metadata } from 'next';
 
 interface TeamMember {
   id: number;
@@ -17,7 +18,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'Dr. Carlos Eduardo Silva',
+    name: 'Dra. Ana Laura Cardoso',
     specialty: 'Implantodontista',
     cro: 'CRO-SP 45.678',
     description: 'Especialista em implantodontia com mais de 15 anos de experiência. Formado pela USP e pós-graduado em implantes pela NYU.',
@@ -28,7 +29,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
-    name: 'Dra. Mariana Santos',
+    name: 'Dra. Mariana Veloso',
     specialty: 'Ortodontista',
     cro: 'CRO-SP 32.145',
     description: 'Ortodontista especializada em aparelhos estéticos e alinhadores invisíveis. Referência em tratamentos para adultos.',
@@ -50,7 +51,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 4,
-    name: 'Dra. Ana Paula Costa',
+    name: 'Dr. Filipe Fernandes',
     specialty: 'Odontopediatra',
     cro: 'CRO-SP 41.523',
     description: 'Especialista em odontopediatria com abordagem lúdica e humanizada. Atende bebês, crianças e adolescentes.',
@@ -72,7 +73,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 6,
-    name: 'Dra. Juliana Oliveira',
+    name: 'Dra. Camila Rodrigues',
     specialty: 'Dentística e Estética',
     cro: 'CRO-SP 39.456',
     description: 'Especialista em dentística restauradora e estética dental. Referência em laminados cerâmicos e harmonização orofacial.',
@@ -82,6 +83,19 @@ const teamMembers: TeamMember[] = [
     specializations: ['Dentística Estética', 'Laminados Cerâmicos', 'Harmonização Orofacial', 'Clareamento Dental']
   }
 ];
+
+export const metadata: Metadata = {
+  title: 'Nossa Equipe | Profissionais Especializados | Dental Corp',
+  description: 'Conheça os profissionais qualificados da Dental Corp. Uma equipe especializada em diversas áreas da odontologia para oferecer o melhor tratamento para seu sorriso.',
+  keywords: 'dentistas, equipe odontológica, especialistas odontologia, ortodontista, implantodontista, endodontista, odontopediatra, dentista especializado',
+  openGraph: {
+    title: 'Nossa Equipe | Profissionais Especializados | Dental Corp',
+    description: 'Conheça os profissionais qualificados da Dental Corp. Uma equipe especializada em diversas áreas da odontologia para oferecer o melhor tratamento para seu sorriso.',
+    images: ['/images/team/dentista.jpg'],
+    type: 'website',
+    locale: 'pt_BR',
+  },
+}
 
 export default function EquipePage() {
   return (
@@ -168,6 +182,7 @@ export default function EquipePage() {
                     className="object-cover object-center hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={member.id <= 3} // Priorizar o carregamento das primeiras imagens
+                    loading={member.id <= 3 ? undefined : "lazy"} // Lazy loading para imagens não prioritárias
                   />
                 </div>
 

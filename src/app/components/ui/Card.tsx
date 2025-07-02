@@ -6,7 +6,6 @@ export interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'elevated' | 'gradient';
   padding?: 'none' | 'sm' | 'md' | 'lg';
-  hover?: boolean;
   className?: string;
   onClick?: () => void;
 }
@@ -15,7 +14,6 @@ const Card: React.FC<CardProps> = ({
   children,
   variant = 'default',
   padding = 'md',
-  hover = true,
   className = '',
   onClick
 }) => {

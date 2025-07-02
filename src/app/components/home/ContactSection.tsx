@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { m } from '../shared/motion';
-import { PlaceholderImage } from '../shared/AnimationUtils';
 
 const inputVariants = {
   focus: {
@@ -270,8 +269,8 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-medium text-gray-800">E-mail</h4>
                     <p className="text-gray-600">
-                      contato@dentalblanc.com.br<br />
-                      agendamento@dentalblanc.com.br
+                      contato@dentalcorp.com.br<br />
+                      agendamento@dentalcorp.com.br
                     </p>
                   </div>
                 </m.div>

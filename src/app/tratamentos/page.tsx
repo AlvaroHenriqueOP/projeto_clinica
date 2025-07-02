@@ -1,5 +1,17 @@
 import React from 'react';
-import Image from 'next/image'; // Descomentado para usar as imagens reais
+import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tratamentos Odontológicos | Dental Corp',
+  description: 'Conheça nossos tratamentos odontológicos especializados: implantes, ortodontia, clareamento, próteses, endodontia e mais. Atendimento personalizado e tecnologia avançada.',
+  keywords: 'tratamentos odontológicos, implantes dentários, ortodontia, clareamento dental, próteses dentárias, tratamento de canal, periodontia, harmonização orofacial, odontopediatria',
+  openGraph: {
+    title: 'Tratamentos Odontológicos | Dental Corp',
+    description: 'Conheça nossos tratamentos odontológicos especializados com tecnologia avançada e profissionais qualificados.',
+    images: ['/images/treatments/implante_dentario.jpg'],
+  },
+};
 
 interface Treatment {
   id: number;
@@ -10,22 +22,10 @@ interface Treatment {
   duration: string;
   price: string;
   benefits: string[];
-  hasRealImage?: boolean; // Propriedade para indicar se tem imagem real
+  hasRealImage?: boolean;
 }
 
-// TODO: Substituir os placeholders pelas imagens reais dos tratamentos
-// Adicione as imagens em /public/images/treatments/ com os seguintes nomes:
-// - implantes.jpg (imagem de implante dentário)
-// - clareamento.jpg (imagem de clareamento dental)
-// - ortodontia.jpg (imagem de aparelho ortodôntico)
-// - proteses.jpg (imagem de prótese dentária)
-// - canal.jpg (imagem de tratamento de canal)
-// - pediatria.jpg (imagem de odontopediatria)
-// - periodontia.jpg (imagem de tratamento periodontal)
-// - harmonizacao.jpg (imagem de harmonização orofacial)
-
 // Usando as imagens disponíveis em /public/images/treatments/
-// As demais imagens serão adicionadas posteriormente
 const treatments: Treatment[] = [
   {
     id: 1,
@@ -54,40 +54,44 @@ const treatments: Treatment[] = [
     title: 'Ortodontia',
     description: 'Alinhe seus dentes com discrição usando os mais modernos aparelhos transparentes disponíveis.',
     fullDescription: 'Nossa ortodontia utiliza as mais modernas técnicas, incluindo aparelhos transparentes e alinhadores invisíveis. Realizamos um planejamento digital completo para prever os resultados e otimizar o tempo de tratamento. Ideal para crianças, adolescentes e adultos.',
-    image: '/images/treatments/ortodontia.jpg',
+    image: '/images/treatments/ortodontia.jpeg',
     duration: '12-24 meses',
     price: 'A partir de R$ 3.500',
-    benefits: ['Aparelhos estéticos', 'Planejamento digital', 'Menor tempo de tratamento', 'Conforto superior']
+    benefits: ['Aparelhos estéticos', 'Planejamento digital', 'Menor tempo de tratamento', 'Conforto superior'],
+    hasRealImage: true
   },
   {
     id: 4,
     title: 'Próteses Dentárias',
     description: 'Restaurações personalizadas para substituir dentes ausentes e restaurar a funcionalidade e estética bucal.',
     fullDescription: 'Confeccionamos próteses totais e parciais com materiais de alta qualidade. Nossas próteses são personalizadas para cada paciente, garantindo conforto, estética e funcionalidade. Utilizamos tecnologia CAD/CAM para maior precisão.',
-    image: '/images/treatments/proteses.jpg',
+    image: '/images/treatments/protese_dentaria.jpg',
     duration: '2-4 sessões',
     price: 'A partir de R$ 1.200',
-    benefits: ['Materiais premium', 'Encaixe perfeito', 'Estética natural', 'Durabilidade comprovada']
+    benefits: ['Materiais premium', 'Encaixe perfeito', 'Estética natural', 'Durabilidade comprovada'],
+    hasRealImage: true
   },
   {
     id: 5,
     title: 'Tratamento de Canal',
     description: 'Procedimentos precisos para tratar infecções da polpa dentária e preservar o dente natural.',
     fullDescription: 'Realizamos tratamento endodôntico com equipamentos de última geração, incluindo microscopia operatória e instrumentos rotatórios. O procedimento é praticamente indolor e permite preservar o dente natural, evitando a extração.',
-    image: '/images/treatments/canal.jpg',
+    image: '/images/treatments/tratamento_canal.jpg',
     duration: '1-3 sessões',
     price: 'A partir de R$ 600',
-    benefits: ['Preserva dente natural', 'Tecnologia avançada', 'Procedimento indolor', 'Alta taxa de sucesso']
+    benefits: ['Preserva dente natural', 'Tecnologia avançada', 'Procedimento indolor', 'Alta taxa de sucesso'],
+    hasRealImage: true
   },
   {
     id: 6,
     title: 'Odontopediatria',
     description: 'Cuidados especializados para a saúde bucal das crianças em um ambiente acolhedor e divertido.',
     fullDescription: 'Nossa odontopediatria oferece atendimento especializado para bebês, crianças e adolescentes. Criamos um ambiente lúdico e acolhedor para que as crianças se sintam confortáveis. Focamos na prevenção e educação para estabelecer hábitos saudáveis desde cedo.',
-    image: '/images/treatments/pediatria.jpg',
+    image: '/images/treatments/odontopediatria.jpg',
     duration: '30-45 min',
     price: 'A partir de R$ 150',
-    benefits: ['Ambiente infantil', 'Prevenção especializada', 'Educação bucal', 'Profissionais qualificados']
+    benefits: ['Ambiente infantil', 'Prevenção especializada', 'Educação bucal', 'Profissionais qualificados'],
+    hasRealImage: true
   },
   {
     id: 7,
@@ -97,17 +101,19 @@ const treatments: Treatment[] = [
     image: '/images/treatments/periodontia.jpg',
     duration: '1-4 sessões',
     price: 'A partir de R$ 400',
-    benefits: ['Preserva dentes naturais', 'Elimina mau hálito', 'Previne perda óssea', 'Melhora saúde geral']
+    benefits: ['Preserva dentes naturais', 'Elimina mau hálito', 'Previne perda óssea', 'Melhora saúde geral'],
+    hasRealImage: true
   },
   {
     id: 8,
     title: 'Harmonização Orofacial',
     description: 'Procedimentos estéticos para harmonizar o sorriso com o rosto, realçando a beleza natural.',
     fullDescription: 'A harmonização orofacial combina odontologia e estética facial para criar um sorriso em harmonia com as características do rosto. Realizamos aplicação de toxina botulínica, preenchimento labial e outros procedimentos para realçar sua beleza natural.',
-    image: '/images/treatments/harmonizacao.jpg',
+    image: '/images/treatments/harmonização_orofacial.jpg',
     duration: '30-60 min',
     price: 'A partir de R$ 800',
-    benefits: ['Rejuvenescimento facial', 'Sorriso harmônico', 'Procedimentos minimamente invasivos', 'Resultados naturais']
+    benefits: ['Rejuvenescimento facial', 'Sorriso harmônico', 'Procedimentos minimamente invasivos', 'Resultados naturais'],
+    hasRealImage: true
   }
 ];
 
@@ -197,6 +203,7 @@ export default function TratamentosPage() {
                       className="object-cover object-center hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       priority={treatment.id <= 2} // Priorizar o carregamento das primeiras imagens
+                      loading={treatment.id <= 2 ? undefined : "lazy"} // Lazy loading para imagens não prioritárias
                     />
                   ) : (
                     <div className="h-full w-full bg-gray-200 flex items-center justify-center">
@@ -264,18 +271,16 @@ export default function TratamentosPage() {
 
       {/* Call to action */}
       <section className="relative py-24 overflow-hidden">
-        {/* Fundo com gradiente e efeitos */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#866D36] to-[#5D4A24] z-0">
-          {/* Elementos decorativos */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
-          </div>
+        {/* Fundo com gradiente simplificado */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8A7339] via-[#866D36] to-[#5D4824] z-0">
+          {/* Overlay de gradiente suave */}
+          <div className="absolute inset-0 opacity-30" 
+               style={{background: 'radial-gradient(circle at top right, rgba(255,255,255,0.3) 0%, transparent 60%)'}}></div>
           
           {/* Padrão de linhas decorativas */}
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-10">
             <div className="h-full w-full" style={{ 
-              backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,0.2) 1px, transparent 1px)',
               backgroundSize: '40px 40px'
             }}></div>
           </div>
@@ -288,7 +293,7 @@ export default function TratamentosPage() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                 Pronto para transformar<br />seu <span className="relative inline-block">
                   sorriso?
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/40 rounded-full"></span>
+                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/60 rounded-full"></span>
                 </span>
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-xl">

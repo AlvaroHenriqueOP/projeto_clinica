@@ -1,5 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sobre a Dental Corp | Nossa História e Valores',
+  description: 'Conheça a história da Dental Corp, nossos valores e compromisso com excelência em tratamentos odontológicos. Uma clínica moderna com profissionais qualificados.',
+  keywords: 'clínica odontológica, Dental Corp, história, valores, missão, odontologia de qualidade, dentista, equipe odontológica',
+  openGraph: {
+    title: 'Sobre a Dental Corp | Nossa História e Valores',
+    description: 'Conheça a história da Dental Corp, nossos valores e compromisso com excelência em tratamentos odontológicos. Uma clínica moderna com profissionais qualificados.',
+    images: ['/images/interior_clinica.jpg'],
+    type: 'website',
+    locale: 'pt_BR',
+  },
+}
 
 export default function SobrePage() {
   return (
@@ -56,14 +70,14 @@ export default function SobrePage() {
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Imagem da clínica */}
-            <div className="relative h-96 rounded-lg overflow-hidden shadow-md">
+            <div className="relative h-full w-full overflow-hidden rounded-xl shadow-lg">
               <Image
-                src="/images/clinica-interior.jpg"
-                alt="Interior da nossa clínica odontológica"
+                src="/images/interior_clinica.jpg"
+                alt="Interior da Clínica Dental Corp"
                 fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
@@ -77,7 +91,7 @@ export default function SobrePage() {
               </h2>
               <div className="space-y-4 text-[oklch(50%_0.02_80deg)]">
                 <p>
-                  Fundada em 2005, a clínica Dental Excellence nasceu do sonho do Dr. Carlos Silva de criar um espaço 
+                  Fundada em 2005, a clínica Dental Corp nasceu do sonho do Dr. Carlos Silva de criar um espaço 
                   onde tratamentos odontológicos de alta qualidade pudessem ser oferecidos em um ambiente acolhedor e com
                   tecnologia de ponta.
                 </p>
@@ -186,18 +200,17 @@ export default function SobrePage() {
                   Agendar Consulta
                 </a>
               </div>
-              <div className="relative h-64 lg:h-auto overflow-hidden">
-                <div className="absolute inset-0 bg-[#866D36]/10 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-[oklch(97%_0.03_80deg)] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-[#866D36]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <p className="text-[oklch(40%_0.02_80deg)] text-lg font-medium">Conheça nossa clínica em vídeo</p>
-                  </div>
-                </div>
-                {/* Aqui pode ser adicionado um vídeo real */}
+              <div className="relative h-64 lg:h-auto">
+                <video 
+                  src="/videointerior_gemini.mp4"
+                  className="w-full h-full object-cover" 
+                  controls 
+                  autoPlay 
+                  muted
+                  loop
+                  poster="/images/interior_clinica.jpg"
+                >
+                </video>
               </div>
             </div>
           </div>

@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { m } from '../shared/motion';
-import { FadeIn, FadeInUp, PlaceholderImage } from '../shared/AnimationUtils';
+import { FadeIn, FadeInUp } from '../shared/AnimationUtils';
 
 const AboutPreview: React.FC = () => {
   return (
@@ -38,12 +39,16 @@ const AboutPreview: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <PlaceholderImage 
-                className="bg-gray-200" 
-                height="h-[500px]" 
-                width="w-full"
-                label="Interior da Clínica" 
-              />
+              <div className="relative h-[500px] w-full">
+                <Image 
+                  src="/images/interior_clinica.jpg" 
+                  alt="Interior da Clínica" 
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
             </m.div>
             
             {/* Elemento flutuante com estatística */}

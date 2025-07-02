@@ -87,8 +87,7 @@ const ContactForm: React.FC = () => {
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#866D36] focus:border-transparent text-gray-800"
             placeholder="Digite seu nome completo"
             style={{ 
-              caretColor: '#866D36',
-              '::placeholder': { color: '#9CA3AF' }
+              caretColor: '#866D36'
             }}
           />
         </div>
