@@ -157,43 +157,49 @@ const PartnershipsSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden">
-            {/* Efeito de sombra nas bordas */}
-            <div className="absolute left-0 top-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
-            
-            {/* Carrossel de logos */}
-            <div className="overflow-hidden">
-              <div 
-                ref={carouselRef}
-                className="flex items-center gap-8 py-4"
-                style={{ width: 'max-content' }}
-              >
-                {convenios.map((convenio, index) => (
-                  <div
-                    key={`${convenio.id}-${index}`}
-                    className="carousel-item flex-shrink-0"
-                  >
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center h-[80px] w-[160px] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={convenio.logo}
-                          alt={`Convênio ${convenio.nome}`}
-                          fill
-                          sizes="160px"
-                          className="object-contain p-2"
-                          loading="lazy"
-                        />
+          {isMounted ? (
+            <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden">
+              {/* Efeito de sombra nas bordas */}
+              <div className="absolute left-0 top-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+              
+              {/* Carrossel de logos */}
+              <div className="overflow-hidden">
+                <div 
+                  ref={carouselRef}
+                  className="flex items-center gap-8 py-4"
+                  style={{ width: 'max-content' }}
+                >
+                  {convenios.map((convenio, index) => (
+                    <div
+                      key={`${convenio.id}-${index}`}
+                      className="carousel-item flex-shrink-0"
+                    >
+                      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center h-[80px] w-[160px] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <div className="relative h-full w-full">
+                          <Image
+                            src={convenio.logo}
+                            alt={`Convênio ${convenio.nome}`}
+                            fill
+                            sizes="160px"
+                            className="object-contain p-2"
+                            loading="lazy"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+  
+              {/* Decoração lateral */}
+              <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
             </div>
-
-            {/* Decoração lateral */}
-            <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
-          </div>
+          ) : (
+            <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden h-[120px] animate-pulse">
+              <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
+            </div>
+          )}
         </m.div>
         
         {/* Grade estática de logos para dispositivos móveis */}

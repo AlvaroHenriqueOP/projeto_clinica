@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import LazyImage from '../shared/LazyImage';
 import { motion } from 'framer-motion';
 
@@ -35,9 +35,16 @@ export default function RollingGallery({
 }: RollingGalleryProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scrollerInnerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Verificar se o componente está montado no cliente
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!scrollerRef.current || !scrollerInnerRef.current) return;
+    // Não executar no servidor ou antes da montagem no cliente
+    if (!isMounted || !scrollerRef.current || !scrollerInnerRef.current) return;
 
     // Duplicar as imagens para criar um loop contínuo
     const scrollerContent = Array.from(scrollerInnerRef.current.children);
@@ -51,6 +58,8 @@ export default function RollingGallery({
     // Configurar a animação
     const scrollerInner = scrollerInnerRef.current;
     const scrollerWidth = scrollerInner.offsetWidth / 2;
+    
+    let animationId: number;
     
     const animate = () => {
       if (!scrollerInner) return;
@@ -74,17 +83,26 @@ export default function RollingGallery({
         scrollerInner.style.transform = `translateX(${newPosition}px)`;
       }
       
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     // Iniciar a animação
-    const animationId = requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
     
     // Limpar a animação quando o componente for desmontado
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [direction]);
+  }, [direction, isMounted]);
+
+  // Renderização condicional até que o componente esteja montado no cliente
+  if (!isMounted) {
+    return (
+      <div className={`${className} h-[200px] bg-gray-100/30 rounded-lg flex items-center justify-center`}>
+        <div className="text-gray-400 animate-pulse">Carregando galeria...</div>
+      </div>
+    );
+  }
 
   return (
     <div 

@@ -4,6 +4,7 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import HeroSection from './components/home/HeroSection';
 import { preloadComponent } from '@/lib/navigation';
+import LazyImage from './components/shared/LazyImage';
 
 // Importações lazy para componentes secundários
 const ServicesHighlight = lazy(() => import('./components/home/ServicesHighlight'));
@@ -11,9 +12,9 @@ const AboutPreview = lazy(() => import('./components/home/AboutPreview'));
 const Testimonials = lazy(() => import('./components/home/Testimonials'));
 const ContactSection = lazy(() => import('./components/home/ContactSection'));
 
-// Importação dinâmica do RollingGallery para evitar problemas de SSR
+// Importação dinâmica do RollingGallery com SSR ativado
 const RollingGallery = dynamic(() => import('./components/home/RollingGallery'), {
-  ssr: false,
+  ssr: true,
   loading: () => (
     <div className="h-[200px] flex items-center justify-center">
       <div className="animate-pulse text-gray-400">Carregando galeria...</div>
@@ -161,21 +162,13 @@ export default function HomePage() {
           <HeroSection />
         </section>
         
-        {/* Divisor decorativo */}
-        <div className="relative">
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(98%_0.01_80deg)] -mt-12 transform skew-y-1"></div>
-        </div>
-        
-        <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative">
+        <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative pt-10">
           <Suspense fallback={<ServicesPlaceholder />}>
             <ServicesHighlight />
           </Suspense>
-          
-          {/* Divisor decorativo */}
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(98%_0.01_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
-        <section id="about">
+        <section id="about" className="pt-10">
           <Suspense fallback={<SectionPlaceholder />}>
             <AboutPreview />
           </Suspense>
@@ -193,15 +186,65 @@ export default function HomePage() {
               </p>
             </div>
             
-            <RollingGallery 
-              images={galleryImages1}
-              className="mb-8"
-            />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="col-span-2 aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/interior_clinica.jpg"
+                  alt="Interior da clínica"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/treatments/implante_dentario.jpg" 
+                  alt="Procedimento de implante"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/treatments/clareamento.jpg" 
+                  alt="Procedimento de clareamento"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
             
-            <RollingGallery 
-              images={galleryImages2}
-              direction="right"
-            />
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/treatments/periodontia.jpg" 
+                  alt="Tratamento de periodontia"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/treatments/odontopediatria.jpg" 
+                  alt="Atendimento odontopediátrico"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="aspect-square relative rounded-lg overflow-hidden">
+                <LazyImage
+                  src="/images/treatments/tratamento_canal.jpg" 
+                  alt="Tratamento de canal"
+                  fill={true}
+                  className="rounded-lg"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
           </div>
         </section>
         
@@ -210,18 +253,10 @@ export default function HomePage() {
           <PartnershipsSection />
         </section>
         
-        {/* Divisor decorativo */}
-        <div className="relative">
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(97%_0.03_80deg)] -mt-12 transform skew-y-1"></div>
-        </div>
-        
         <section id="testimonials" className="bg-[oklch(97%_0.03_80deg)] relative">
           <Suspense fallback={<SectionPlaceholder />}>
             <Testimonials />
           </Suspense>
-          
-          {/* Divisor decorativo */}
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(97%_0.03_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
         <section id="contact">
