@@ -36,28 +36,49 @@ const ServicesHighlight: React.FC = () => {
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-10 md:mb-16">
-          <m.h2 
-            className="text-3xl md:text-4xl font-bold mb-4 text-gray-800"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportConfig}
-            transition={{ duration: 0.5 }}
+        <m.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <m.span 
+            className="text-[#866D36] font-medium text-sm uppercase tracking-wider"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Tratamentos <span className="text-[#866D36]">Especializados</span>
+            Cuidados odontológicos de excelência
+          </m.span>
+          <m.h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Tratamentos Especializados
           </m.h2>
-          
+          <m.div 
+            className="w-24 h-1 bg-[#866D36] mx-auto mb-6"
+            initial={{ width: 0 }}
+            whileInView={{ width: 96 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          ></m.div>
           <m.p 
             className="text-gray-600 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={viewportConfig}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Cuidamos da sua saúde bucal com tecnologia avançada e profissionais especializados.
             Nossa clínica oferece uma ampla gama de tratamentos odontológicos.
           </m.p>
-        </div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {featuredTreatments.map((treatment, index) => (

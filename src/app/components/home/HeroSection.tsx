@@ -77,21 +77,6 @@ const HeroSection: React.FC = () => {
           className="absolute bottom-40 -left-40 w-80 h-80 rounded-full bg-gradient-to-tr from-[#866D36]/30 to-[#B09048]/20"
         />
         
-        {/* Linhas decorativas */}
-        <m.div 
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-[#866D36]/50 via-[#B09048]/30 to-transparent origin-left"
-        ></m.div>
-        
-        <m.div 
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="absolute top-1/3 left-0 w-2/3 h-px bg-gradient-to-r from-[#866D36]/50 via-[#B09048]/30 to-transparent origin-left"
-        ></m.div>
-        
         {/* Partículas douradas */}
         <div className="absolute inset-0">
           <m.div 

@@ -71,6 +71,18 @@ const galleryImages1 = [
     width: 300, 
     height: 200 
   },
+  { 
+    src: '/images/nossa_clinica/galeria9.jpg', 
+    alt: 'Nossa clínica - Ambiente de espera', 
+    width: 300, 
+    height: 200 
+  },
+  { 
+    src: '/images/nossa_clinica/galeria1.jpg', 
+    alt: 'Nossa clínica - Vista interior', 
+    width: 300, 
+    height: 200 
+  },
 ];
 
 const galleryImages2 = [
@@ -95,6 +107,18 @@ const galleryImages2 = [
   { 
     src: '/images/nossa_clinica/galeria8.jpg', 
     alt: 'Nossa clínica - Detalhes do ambiente', 
+    width: 300, 
+    height: 200 
+  },
+  { 
+    src: '/images/nossa_clinica/galeria10.jpg', 
+    alt: 'Nossa clínica - Equipamentos modernos', 
+    width: 300, 
+    height: 200 
+  },
+  { 
+    src: '/images/nossa_clinica/galeria5.jpg', 
+    alt: 'Nossa clínica - Recepção', 
     width: 300, 
     height: 200 
   },
@@ -150,18 +174,10 @@ export default function HomePage() {
           <HeroSection />
         </section>
         
-        {/* Divisor decorativo */}
-        <div className="relative">
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(98%_0.01_80deg)] -mt-12 transform skew-y-1"></div>
-        </div>
-        
         <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative">
           <Suspense fallback={<ServicesPlaceholder />}>
             <ServicesHighlight />
           </Suspense>
-          
-          {/* Divisor decorativo */}
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(98%_0.01_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
         <section id="about">
@@ -233,18 +249,10 @@ export default function HomePage() {
           <PartnershipsSection />
         </section>
         
-        {/* Divisor decorativo */}
-        <div className="relative">
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(97%_0.03_80deg)] -mt-12 transform skew-y-1"></div>
-        </div>
-        
         <section id="testimonials" className="bg-[oklch(97%_0.03_80deg)] relative">
           <Suspense fallback={<SectionPlaceholder />}>
             <Testimonials />
           </Suspense>
-          
-          {/* Divisor decorativo */}
-          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(97%_0.03_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
         <section id="contact">
