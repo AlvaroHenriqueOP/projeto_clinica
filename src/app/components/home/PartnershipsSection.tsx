@@ -62,41 +62,51 @@ const PartnershipsSection = () => {
     if (!isMounted || !carouselRef.current) return;
     
     let animationId: number;
-    let position = 0;
     const speed = 0.5;
     const container = carouselRef.current;
-    const totalWidth = container.scrollWidth;
     
-    // Duplicar os itens para criar um loop infinito
-    const originalItems = container.querySelectorAll('.carousel-item');
+    // Duplicar os itens para criar um loop infinito (3 conjuntos no total)
+    const originalItems = Array.from(container.querySelectorAll('.carousel-item'));
+    
+    // Primeiro conjunto adicional
     originalItems.forEach(item => {
       const clone = item.cloneNode(true);
       container.appendChild(clone);
     });
     
+    // Segundo conjunto adicional para garantir transição suave
+    originalItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      container.appendChild(clone);
+    });
+    
+    // Calcular a largura de um conjunto completo de itens
+    const itemWidth = originalItems.reduce((total, item) => {
+      // Largura do item + gap (160px + 32px)
+      return total + (item as HTMLElement).offsetWidth + 32;
+    }, 0);
+    
+    let currentPosition = 0;
+    
     const animate = () => {
       if (!container) return;
       
-      position += speed;
+      // Avançar a posição
+      currentPosition -= speed;
       
-      // Resetar a posição quando chegar ao final dos itens originais
-      if (position >= totalWidth / 2) {
-        position = 0;
-        container.style.transition = 'none';
-        container.style.transform = `translateX(0px)`;
-        
-        // Forçar reflow para que a transição seja aplicada novamente
-        void container.offsetWidth;
-        container.style.transition = 'transform 0.5s ease';
-      } else {
-        container.style.transform = `translateX(-${position}px)`;
+      // Quando chegar ao final do primeiro conjunto, reiniciar suavemente
+      if (Math.abs(currentPosition) >= itemWidth) {
+        currentPosition += itemWidth;
       }
+      
+      // Aplicar a transformação
+      container.style.transform = `translateX(${currentPosition}px)`;
       
       animationId = requestAnimationFrame(animate);
     };
     
-    // Iniciar a animação
-    container.style.transition = 'transform 0.5s ease';
+    // Configurar a transição e iniciar a animação
+    container.style.willChange = 'transform'; // Otimização de performance
     animationId = requestAnimationFrame(animate);
     
     // Pausar a animação quando o mouse estiver sobre o carrossel
@@ -157,49 +167,43 @@ const PartnershipsSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          {isMounted ? (
-            <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden">
-              {/* Efeito de sombra nas bordas */}
-              <div className="absolute left-0 top-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-              <div className="absolute right-0 top-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
-              
-              {/* Carrossel de logos */}
-              <div className="overflow-hidden">
-                <div 
-                  ref={carouselRef}
-                  className="flex items-center gap-8 py-4"
-                  style={{ width: 'max-content' }}
-                >
-                  {convenios.map((convenio, index) => (
-                    <div
-                      key={`${convenio.id}-${index}`}
-                      className="carousel-item flex-shrink-0"
-                    >
-                      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center h-[80px] w-[160px] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                        <div className="relative h-full w-full">
-                          <Image
-                            src={convenio.logo}
-                            alt={`Convênio ${convenio.nome}`}
-                            fill
-                            sizes="160px"
-                            className="object-contain p-2"
-                            loading="lazy"
-                          />
-                        </div>
+          <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden">
+            {/* Efeito de sombra nas bordas */}
+            <div className="absolute left-0 top-0 w-12 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 w-12 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+            
+            {/* Carrossel de logos */}
+            <div className="overflow-hidden">
+              <div 
+                ref={carouselRef}
+                className="flex items-center gap-8 py-4"
+                style={{ width: 'max-content' }}
+              >
+                {convenios.map((convenio, index) => (
+                  <div
+                    key={`${convenio.id}-${index}`}
+                    className="carousel-item flex-shrink-0"
+                  >
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center h-[80px] w-[160px] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={convenio.logo}
+                          alt={`Convênio ${convenio.nome}`}
+                          fill
+                          sizes="160px"
+                          className="object-contain p-2"
+                          loading="lazy"
+                        />
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-  
-              {/* Decoração lateral */}
-              <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
             </div>
-          ) : (
-            <div className="bg-white rounded-xl shadow-md p-8 relative overflow-hidden h-[120px] animate-pulse">
-              <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
-            </div>
-          )}
+
+            {/* Decoração lateral */}
+            <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 h-16 w-1.5 bg-gradient-to-b from-[#866D36] via-[#b69c67] to-[#866D36] rounded-full"></div>
+          </div>
         </m.div>
         
         {/* Grade estática de logos para dispositivos móveis */}

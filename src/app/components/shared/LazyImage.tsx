@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -48,12 +48,6 @@ export default function LazyImage({
   ...props
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Verificar se o componente está montado no cliente
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Determinar se deve usar carregamento lazy ou não
   const loadingStrategy = priority ? undefined : 'lazy';

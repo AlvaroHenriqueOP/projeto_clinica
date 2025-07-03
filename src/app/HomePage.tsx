@@ -4,7 +4,7 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import HeroSection from './components/home/HeroSection';
 import { preloadComponent } from '@/lib/navigation';
-import LazyImage from './components/shared/LazyImage';
+import { motion as m } from 'framer-motion';
 
 // Importações lazy para componentes secundários
 const ServicesHighlight = lazy(() => import('./components/home/ServicesHighlight'));
@@ -12,9 +12,9 @@ const AboutPreview = lazy(() => import('./components/home/AboutPreview'));
 const Testimonials = lazy(() => import('./components/home/Testimonials'));
 const ContactSection = lazy(() => import('./components/home/ContactSection'));
 
-// Importação dinâmica do RollingGallery com SSR ativado
+// Importação dinâmica do RollingGallery para evitar problemas de SSR
 const RollingGallery = dynamic(() => import('./components/home/RollingGallery'), {
-  ssr: true,
+  ssr: false,
   loading: () => (
     <div className="h-[200px] flex items-center justify-center">
       <div className="animate-pulse text-gray-400">Carregando galeria...</div>
@@ -48,32 +48,26 @@ const PartnershipsSection = dynamic(() => import('./components/home/Partnerships
 // Dados para a galeria de imagens
 const galleryImages1 = [
   { 
-    src: '/images/interior_clinica.jpg', 
-    alt: 'Interior da clínica', 
+    src: '/images/nossa_clinica/galeria1.jpg', 
+    alt: 'Nossa clínica - Vista interior', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/clinica-interior.jpg', 
-    alt: 'Sala de atendimento', 
+    src: '/images/nossa_clinica/galeria2.jpg', 
+    alt: 'Nossa clínica - Consultório', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/treatments/implante_dentario.jpg', 
-    alt: 'Procedimento de implante', 
+    src: '/images/nossa_clinica/galeria3.jpg', 
+    alt: 'Nossa clínica - Sala de atendimento', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/treatments/clareamento.jpg', 
-    alt: 'Procedimento de clareamento', 
-    width: 300, 
-    height: 200 
-  },
-  { 
-    src: '/images/treatments/ortodontia.jpeg', 
-    alt: 'Tratamento ortodôntico', 
+    src: '/images/nossa_clinica/galeria4.jpg', 
+    alt: 'Nossa clínica - Equipamentos', 
     width: 300, 
     height: 200 
   },
@@ -81,32 +75,26 @@ const galleryImages1 = [
 
 const galleryImages2 = [
   { 
-    src: '/images/treatments/protese_dentaria.jpg', 
-    alt: 'Prótese dentária', 
+    src: '/images/nossa_clinica/galeria5.jpg', 
+    alt: 'Nossa clínica - Recepção', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/treatments/periodontia.jpg', 
-    alt: 'Tratamento de periodontia', 
+    src: '/images/nossa_clinica/galeria6.jpg', 
+    alt: 'Nossa clínica - Sala de procedimentos', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/treatments/odontopediatria.jpg', 
-    alt: 'Atendimento odontopediátrico', 
+    src: '/images/nossa_clinica/galeria7.jpg', 
+    alt: 'Nossa clínica - Espaço moderno', 
     width: 300, 
     height: 200 
   },
   { 
-    src: '/images/treatments/harmonização_orofacial.jpg', 
-    alt: 'Harmonização orofacial', 
-    width: 300, 
-    height: 200 
-  },
-  { 
-    src: '/images/treatments/tratamento_canal.jpg', 
-    alt: 'Tratamento de canal', 
+    src: '/images/nossa_clinica/galeria8.jpg', 
+    alt: 'Nossa clínica - Detalhes do ambiente', 
     width: 300, 
     height: 200 
   },
@@ -162,13 +150,21 @@ export default function HomePage() {
           <HeroSection />
         </section>
         
-        <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative pt-10">
+        {/* Divisor decorativo */}
+        <div className="relative">
+          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(98%_0.01_80deg)] -mt-12 transform skew-y-1"></div>
+        </div>
+        
+        <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative">
           <Suspense fallback={<ServicesPlaceholder />}>
             <ServicesHighlight />
           </Suspense>
+          
+          {/* Divisor decorativo */}
+          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(98%_0.01_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
-        <section id="about" className="pt-10">
+        <section id="about">
           <Suspense fallback={<SectionPlaceholder />}>
             <AboutPreview />
           </Suspense>
@@ -177,74 +173,58 @@ export default function HomePage() {
         {/* Galeria de imagens com carregamento lazy */}
         <section id="gallery" className="py-16 bg-[oklch(98%_0.01_80deg)]">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[oklch(40%_0.02_80deg)] mb-4">
+            <m.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <m.span 
+                className="text-[#866D36] font-medium text-sm uppercase tracking-wider"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Conheça nosso espaço
+              </m.span>
+              <m.h2 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2 mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 Nossa Clínica em Imagens
-              </h2>
-              <p className="text-[oklch(50%_0.02_80deg)] max-w-2xl mx-auto">
+              </m.h2>
+              <m.div 
+                className="w-24 h-1 bg-[#866D36] mx-auto mb-6"
+                initial={{ width: 0 }}
+                whileInView={{ width: 96 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              ></m.div>
+              <m.p 
+                className="text-gray-600 max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Conheça nosso ambiente moderno e acolhedor, projetado para proporcionar o máximo conforto durante seu atendimento
-              </p>
-            </div>
+              </m.p>
+            </m.div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-              <div className="col-span-2 aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/interior_clinica.jpg"
-                  alt="Interior da clínica"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-              <div className="aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/treatments/implante_dentario.jpg" 
-                  alt="Procedimento de implante"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-              <div className="aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/treatments/clareamento.jpg" 
-                  alt="Procedimento de clareamento"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-            </div>
+            <RollingGallery 
+              images={galleryImages1}
+              className="mb-8"
+            />
             
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/treatments/periodontia.jpg" 
-                  alt="Tratamento de periodontia"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-              <div className="aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/treatments/odontopediatria.jpg" 
-                  alt="Atendimento odontopediátrico"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-              <div className="aspect-square relative rounded-lg overflow-hidden">
-                <LazyImage
-                  src="/images/treatments/tratamento_canal.jpg" 
-                  alt="Tratamento de canal"
-                  fill={true}
-                  className="rounded-lg"
-                  objectFit="cover"
-                />
-              </div>
-            </div>
+            <RollingGallery 
+              images={galleryImages2}
+              direction="right"
+            />
           </div>
         </section>
         
@@ -253,10 +233,18 @@ export default function HomePage() {
           <PartnershipsSection />
         </section>
         
+        {/* Divisor decorativo */}
+        <div className="relative">
+          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white to-[oklch(97%_0.03_80deg)] -mt-12 transform skew-y-1"></div>
+        </div>
+        
         <section id="testimonials" className="bg-[oklch(97%_0.03_80deg)] relative">
           <Suspense fallback={<SectionPlaceholder />}>
             <Testimonials />
           </Suspense>
+          
+          {/* Divisor decorativo */}
+          <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-[oklch(97%_0.03_80deg)] to-white -mt-12 transform -skew-y-1"></div>
         </section>
         
         <section id="contact">

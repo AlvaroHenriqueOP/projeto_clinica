@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import LazyImage from '../shared/LazyImage';
-import { motion } from 'framer-motion';
 
 interface GalleryImage {
   src: string;
@@ -35,19 +34,22 @@ export default function RollingGallery({
 }: RollingGalleryProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scrollerInnerRef = useRef<HTMLDivElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
-  
-  // Verificar se o componente está montado no cliente
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
-    // Não executar no servidor ou antes da montagem no cliente
-    if (!isMounted || !scrollerRef.current || !scrollerInnerRef.current) return;
+    if (!scrollerRef.current || !scrollerInnerRef.current) return;
 
-    // Duplicar as imagens para criar um loop contínuo
+    // Duplicar as imagens 3 vezes para criar um loop contínuo mais suave
     const scrollerContent = Array.from(scrollerInnerRef.current.children);
+    
+    // Primeiro conjunto - clonar ao final para transição
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      if (scrollerInnerRef.current) {
+        scrollerInnerRef.current.appendChild(duplicatedItem);
+      }
+    });
+    
+    // Segundo conjunto - clonar novamente para garantir um loop mais suave
     scrollerContent.forEach((item) => {
       const duplicatedItem = item.cloneNode(true);
       if (scrollerInnerRef.current) {
@@ -57,52 +59,55 @@ export default function RollingGallery({
 
     // Configurar a animação
     const scrollerInner = scrollerInnerRef.current;
-    const scrollerWidth = scrollerInner.offsetWidth / 2;
+    const originalSetWidth = scrollerContent.reduce((width, item) => {
+      const itemWidth = (item as HTMLElement).offsetWidth;
+      return width + itemWidth + 16; // 16px para as margens (mx-2)
+    }, 0);
     
-    let animationId: number;
+    let currentTranslate = 0;
+    const pixelsPerFrame = speed / 40; // Converter o speed para uma velocidade adequada de pixels por frame
     
     const animate = () => {
       if (!scrollerInner) return;
       
-      // Calcular a posição atual
-      const currentScrollPosition = parseFloat(
-        scrollerInner.style.transform?.split('translateX(')[1]?.split('px)')[0] || '0'
-      );
-      
-      // Calcular a nova posição
-      const newPosition = direction === 'left'
-        ? currentScrollPosition - 0.5
-        : currentScrollPosition + 0.5;
-      
-      // Resetar a posição quando chegar ao final
-      if (direction === 'left' && newPosition <= -scrollerWidth) {
-        scrollerInner.style.transform = `translateX(0px)`;
-      } else if (direction === 'right' && newPosition >= 0) {
-        scrollerInner.style.transform = `translateX(${-scrollerWidth}px)`;
+      // Avançar a posição baseado na direção
+      if (direction === 'left') {
+        currentTranslate -= pixelsPerFrame;
+        
+        // Quando deslocar a largura do primeiro conjunto, resetar para continuar o loop
+        if (Math.abs(currentTranslate) >= originalSetWidth) {
+          currentTranslate += originalSetWidth;
+        }
       } else {
-        scrollerInner.style.transform = `translateX(${newPosition}px)`;
+        currentTranslate += pixelsPerFrame;
+        
+        // Para direção direita, lógica inversa
+        if (currentTranslate >= 0) {
+          currentTranslate -= originalSetWidth;
+        }
       }
       
-      animationId = requestAnimationFrame(animate);
+      // Aplicar a transformação
+      scrollerInner.style.transform = `translateX(${currentTranslate}px)`;
+      
+      // Continuar animação
+      requestAnimationFrame(animate);
     };
 
+    // Inicializar a posição baseada na direção
+    if (direction === 'right') {
+      currentTranslate = -originalSetWidth;
+      scrollerInner.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
     // Iniciar a animação
-    animationId = requestAnimationFrame(animate);
+    const animationId = requestAnimationFrame(animate);
     
     // Limpar a animação quando o componente for desmontado
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [direction, isMounted]);
-
-  // Renderização condicional até que o componente esteja montado no cliente
-  if (!isMounted) {
-    return (
-      <div className={`${className} h-[200px] bg-gray-100/30 rounded-lg flex items-center justify-center`}>
-        <div className="text-gray-400 animate-pulse">Carregando galeria...</div>
-      </div>
-    );
-  }
+  }, [direction, speed]);
 
   return (
     <div 
