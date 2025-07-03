@@ -7,6 +7,8 @@ export function scrollToSection(sectionId: string, offset: number = 0): void {
   // Verificar se estamos no navegador
   if (typeof window === 'undefined') return;
   
+  console.log(`Tentando navegar para #${sectionId} com offset ${offset}px`);
+  
   // Encontrar o elemento pelo ID
   const element = document.getElementById(sectionId);
   
@@ -25,6 +27,10 @@ export function scrollToSection(sectionId: string, offset: number = 0): void {
     });
   } else {
     console.warn(`Seção com ID "${sectionId}" não encontrada no documento.`);
+    
+    // Verificar todos os IDs no documento para depuração
+    const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+    console.log(`IDs disponíveis no documento: ${allIds.join(', ')}`);
   }
 }
 

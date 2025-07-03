@@ -59,11 +59,11 @@ const Header = () => {
   // Navegação principal
   const navigation: NavigationItem[] = [
     { name: 'Início', href: '/', section: 'home' },
-    { name: 'Tratamentos', href: '/tratamentos', section: 'services' },
+    { name: 'Tratamentos', href: '/tratamentos', section: null },
     { name: 'Equipe', href: '/equipe', section: null },
     { name: 'Sobre', href: '/sobre', section: null },
     { name: 'Blog', href: '/blog', section: null },
-    { name: 'Contato', href: '/contato', section: 'contact' },
+    { name: 'Contato', href: '/contato', section: null },
   ];
 
   const isActiveLink = (href: string) => {
@@ -81,23 +81,14 @@ const Header = () => {
     // Fechar o menu mobile sempre que um link for clicado
     setIsMobileMenuOpen(false);
 
-    // Se estiver na página inicial e houver uma seção definida, usar navegação suave para a seção
-    if (pathname === '/' && section) {
+    // Se estiver na página inicial e o botão for Home, rolar para o topo
+    if (pathname === '/' && href === '/') {
       e.preventDefault();
-      console.log(`Navegando para seção: ${section} na página inicial`);
-      scrollToSection(section, 80); // 80px de offset para compensar o header
-      return;
-    } 
-    
-    // Se já estiver na página do link clicado, role para o topo
-    if (pathname === href) {
-      e.preventDefault();
-      console.log(`Já na página ${href}, rolando para o topo`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    // Para navegação entre páginas, deixa o comportamento padrão do Link
+    // Para os outros links, deixar a navegação padrão acontecer
     console.log(`Navegando para página: ${href}`);
   };
 
@@ -174,6 +165,7 @@ const Header = () => {
               variant="primary"
               size="sm"
               icon={<PhoneIcon className="w-4 h-4" />}
+              onClick={() => console.log("Clique no botão Agendar")}
             >
               Agendar
             </Button>
@@ -239,7 +231,10 @@ const Header = () => {
                       size="md"
                       fullWidth
                       icon={<PhoneIcon className="w-4 h-4" />}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        console.log("Clique no botão Agendar Consulta do menu móvel");
+                      }}
                     >
                       Agendar Consulta
                     </Button>

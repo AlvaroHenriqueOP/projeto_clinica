@@ -120,6 +120,10 @@ const ServicesHighlight: React.FC = () => {
         >
           <Link href="/tratamentos" className="inline-block">
             <button
+              onClick={(e) => {
+                console.log("Clique no botão 'Conheça todos os nossos tratamentos'");
+                // Não prevenir o comportamento padrão para permitir a navegação normal
+              }}
               className="bg-[#866D36] hover:bg-[#9d824b] text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
             >
               <span>Conheça todos os nossos tratamentos</span>

@@ -20,7 +20,11 @@ const HeroSection: React.FC = () => {
   // Função segura para navegação
   const handleScrollToSection = (sectionId: string) => {
     if (isMounted) {
-      scrollToSection(sectionId, 80);
+      console.log(`HeroSection: Tentando rolar para seção ${sectionId}`);
+      // Adicionar um pequeno delay para garantir que o DOM esteja estabilizado
+      setTimeout(() => {
+        scrollToSection(sectionId, 80);
+      }, 10);
     }
   };
 
@@ -222,7 +226,10 @@ const HeroSection: React.FC = () => {
                 ].map((item, index) => (
                   <React.Fragment key={item.section}>
                     <button
-                      onClick={() => handleScrollToSection(item.section)}
+                      onClick={() => {
+                        console.log(`Navegação rápida: ${item.name} (${item.section})`);
+                        handleScrollToSection(item.section);
+                      }}
                       className="hover:text-[#866D36] transition-colors font-medium"
                     >
                       {item.name}
