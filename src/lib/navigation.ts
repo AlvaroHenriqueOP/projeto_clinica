@@ -15,11 +15,16 @@ export function scrollToSection(sectionId: string, offset: number = 0): void {
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
     
+    // Log para debug
+    console.log(`Rolando para seção: ${sectionId}, posição: ${offsetPosition}px`);
+    
     // Realizar a rolagem suave
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth'
     });
+  } else {
+    console.warn(`Seção com ID "${sectionId}" não encontrada no documento.`);
   }
 }
 

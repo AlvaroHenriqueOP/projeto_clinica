@@ -76,13 +76,7 @@ const galleryImages1 = [
     alt: 'Nossa clínica - Ambiente de espera', 
     width: 300, 
     height: 200 
-  },
-  { 
-    src: '/images/nossa_clinica/galeria1.jpg', 
-    alt: 'Nossa clínica - Vista interior', 
-    width: 300, 
-    height: 200 
-  },
+  }
 ];
 
 const galleryImages2 = [
@@ -115,13 +109,7 @@ const galleryImages2 = [
     alt: 'Nossa clínica - Equipamentos modernos', 
     width: 300, 
     height: 200 
-  },
-  { 
-    src: '/images/nossa_clinica/galeria5.jpg', 
-    alt: 'Nossa clínica - Recepção', 
-    width: 300, 
-    height: 200 
-  },
+  }
 ];
 
 export default function HomePage() {

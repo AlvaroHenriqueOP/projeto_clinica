@@ -7,6 +7,7 @@ import { Bars3Icon, XMarkIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import Button from '../ui/Button';
 import { m, AnimatePresence } from '../shared/motion';
 import { scrollToSection } from '@/lib/navigation';
+import { NavigationItem } from './types';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,11 +57,11 @@ const Header = () => {
   }, [isMobileMenuOpen]);
 
   // Navegação principal
-  const navigation = [
+  const navigation: NavigationItem[] = [
     { name: 'Início', href: '/', section: 'home' },
     { name: 'Tratamentos', href: '/tratamentos', section: 'services' },
-    { name: 'Equipe', href: '/equipe', section: 'about' },
-    { name: 'Sobre', href: '/sobre', section: 'about' },
+    { name: 'Equipe', href: '/equipe', section: null },
+    { name: 'Sobre', href: '/sobre', section: null },
     { name: 'Blog', href: '/blog', section: null },
     { name: 'Contato', href: '/contato', section: 'contact' },
   ];
@@ -71,22 +72,33 @@ const Header = () => {
 
   // Função para lidar com a navegação
   const handleNavigation = (e: React.MouseEvent, href: string, section: string | null) => {
+    // Debug para entender o que está acontecendo
+    console.log(`Navegação acionada - Href: ${href}, Section: ${section}, Pathname atual: ${pathname}`);
+
     // Se não estiver montado no cliente, não fazer nada
     if (!isMounted) return;
 
-    // Se estiver na página inicial e houver uma seção definida, use navegação suave
+    // Fechar o menu mobile sempre que um link for clicado
+    setIsMobileMenuOpen(false);
+
+    // Se estiver na página inicial e houver uma seção definida, usar navegação suave para a seção
     if (pathname === '/' && section) {
       e.preventDefault();
+      console.log(`Navegando para seção: ${section} na página inicial`);
       scrollToSection(section, 80); // 80px de offset para compensar o header
-      setIsMobileMenuOpen(false);
-    } else if (pathname === href) {
-      // Se já estiver na página do link, apenas feche o menu mobile
+      return;
+    } 
+    
+    // Se já estiver na página do link clicado, role para o topo
+    if (pathname === href) {
       e.preventDefault();
-      setIsMobileMenuOpen(false);
-      // Rolar para o topo se clicar no link da página atual
+      console.log(`Já na página ${href}, rolando para o topo`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
-    // Caso contrário, deixa o comportamento padrão do Link (navegação para outra página)
+
+    // Para navegação entre páginas, deixa o comportamento padrão do Link
+    console.log(`Navegando para página: ${href}`);
   };
 
   return (
@@ -141,6 +153,7 @@ const Header = () => {
                       ? 'text-[oklch(60%_0.12_80deg)] font-medium'
                       : 'text-[oklch(45%_0.02_80deg)] hover:text-[oklch(55%_0.12_80deg)]'
                   }`}
+                  data-section={item.section || undefined}
                 >
                   {item.name}
                   {isActiveLink(item.href) && (
@@ -207,6 +220,7 @@ const Header = () => {
                             ? 'bg-gray-50 text-[oklch(60%_0.12_80deg)] font-medium'
                             : 'text-[oklch(45%_0.02_80deg)] hover:bg-gray-50 hover:text-[oklch(55%_0.12_80deg)]'
                         }`}
+                        data-section={item.section || undefined}
                       >
                         {item.name}
                       </Link>
