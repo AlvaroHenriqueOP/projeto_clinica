@@ -105,15 +105,15 @@ const HeroSection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight"
               >
-                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
+                <span className="text-slate-800 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
                   Cuidando do seu
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-gold-600 via-gold-700 to-gold-800 bg-clip-text text-transparent">
+                <span className="text-gold-700 bg-gradient-to-r from-gold-600 via-gold-700 to-gold-800 bg-clip-text text-transparent">
                   sorriso
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
+                <span className="text-slate-800 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
                   com excelência
                 </span>
               </m.h1>

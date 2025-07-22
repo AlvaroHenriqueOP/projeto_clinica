@@ -194,20 +194,20 @@ export default function HomePage() {
           <HeroSection />
         </section>
         
-        <section id="services" className="relative py-20 bg-gradient-to-b from-slate-50/50 to-white">
+        <section id="services" className="relative py-12 bg-gradient-to-b from-slate-50/50 to-white">
           <Suspense fallback={<ServicesPlaceholder />}>
             <ServicesHighlight />
           </Suspense>
         </section>
         
-        <section id="about" className="relative py-20 bg-gradient-to-b from-white to-slate-50/30">
+        <section id="about" className="relative py-12 bg-gradient-to-b from-white to-slate-50/30">
           <Suspense fallback={<SectionPlaceholder />}>
             <AboutPreview />
           </Suspense>
         </section>
         
         {/* Modern Gallery section */}
-        <section id="gallery" className="relative py-20 bg-gradient-to-b from-slate-50/30 to-blue-50/20">
+        <section id="gallery" className="relative py-12 bg-gradient-to-b from-slate-50/30 to-gold-50/20">
           <div className="container mx-auto max-w-7xl px-4">
             <m.div 
               className="text-center mb-16"
@@ -217,13 +217,13 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <m.div 
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-full text-blue-700 text-sm font-medium mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gold-50 to-gold-100 border border-gold-200/50 rounded-full text-gold-700 text-sm font-medium mb-6"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></div>
                 Conheça nosso espaço
               </m.div>
               
@@ -238,7 +238,7 @@ export default function HomePage() {
                   Nossa Clínica em
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-gold-600 via-gold-700 to-gold-800 bg-clip-text text-transparent">
                   Imagens
                 </span>
               </m.h2>
@@ -269,17 +269,17 @@ export default function HomePage() {
         </section>
         
         {/* Modern partnerships section */}
-        <section id="partnerships" className="relative py-20 bg-gradient-to-b from-blue-50/20 to-indigo-50/30">
+        <section id="partnerships" className="relative py-12 bg-gradient-to-b from-gold-50/20 to-gold-100/30">
           <PartnershipsSection />
         </section>
         
-        <section id="testimonials" className="relative py-20 bg-gradient-to-b from-indigo-50/30 to-violet-50/20">
+        <section id="testimonials" className="relative py-12 bg-gradient-to-b from-gold-100/30 to-gold-50/20">
           <Suspense fallback={<SectionPlaceholder />}>
             <Testimonials />
           </Suspense>
         </section>
         
-        <section id="contact" className="relative bg-gradient-to-b from-violet-50/20 to-slate-50">
+        <section id="contact" className="relative bg-gradient-to-b from-gold-50/20 to-slate-50">
           <Suspense fallback={<SectionPlaceholder />}>
             <ContactSection />
           </Suspense>

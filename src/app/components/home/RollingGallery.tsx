@@ -28,7 +28,7 @@ export default function RollingGallery({
   direction = 'left',
   className = '',
 }: RollingGalleryProps) {
-  const animationDuration = images.length * 5; // 5 segundos por imagem
+  const animationDuration = images.length * 8; // 8 segundos por imagem (velocidade mais lenta)
   const totalWidth = images.length * 320; // 320px por imagem (300px + 20px margin)
 
   return (
