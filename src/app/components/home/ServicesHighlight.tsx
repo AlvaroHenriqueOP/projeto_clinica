@@ -34,17 +34,18 @@ const viewportConfig = { once: true, amount: 0.2, margin: "0px 0px -100px 0px" }
 
 const ServicesHighlight: React.FC = () => {
   return (
-    <section className="py-16 md:py-20 relative overflow-hidden">
-      <div className="container mx-auto max-w-7xl px-4">
+    <section className="py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 relative overflow-hidden">
+      {/* Container com largura máxima reduzida em telas grandes para evitar elementos muito espaçados */}
+      <div className="mx-auto px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-0 max-w-7xl lg:max-w-6xl xl:max-w-6xl 2xl:max-w-7xl">
         <m.div 
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-12 lg:mb-16 xl:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <m.span 
-            className="text-[#866D36] font-medium text-sm uppercase tracking-wider"
+            className="text-[#866D36] font-medium text-sm md:text-base lg:text-base xl:text-lg uppercase tracking-wider block mb-2"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -53,7 +54,7 @@ const ServicesHighlight: React.FC = () => {
             Cuidados odontológicos de excelência
           </m.span>
           <m.h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2 mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-3 mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,14 +63,14 @@ const ServicesHighlight: React.FC = () => {
             Tratamentos Especializados
           </m.h2>
           <m.div 
-            className="w-24 h-1 bg-[#866D36] mx-auto mb-6"
+            className="w-24 h-1 bg-[#866D36] mx-auto my-5"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
           ></m.div>
           <m.p 
-            className="text-gray-600 max-w-2xl mx-auto"
+            className="text-gray-600 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-base md:text-lg"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -80,32 +81,33 @@ const ServicesHighlight: React.FC = () => {
           </m.p>
         </m.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Grid com espaçamento significativamente aumentado em telas grandes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-16 mb-12 md:mb-14 lg:mb-16 xl:mb-20">
           {featuredTreatments.map((treatment, index) => (
             <m.div
               key={treatment.id}
-              className="group relative overflow-hidden rounded-lg shadow-md h-64"
+              className="group bg-white relative overflow-hidden rounded-xl shadow-lg h-64 md:h-56 lg:h-64 xl:h-72 2xl:h-80"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
               <div className="relative h-full w-full">
                 <Image
                   src={treatment.image}
                   alt={treatment.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, (max-width: 1536px) 450px, 500px"
+                  className="object-cover w-full h-full"
                   loading={index === 0 ? "eager" : "lazy"}
                   placeholder="blur"
                   blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBoLTQweiIvPjxwYXRoIGQ9Ik00MCAwdjQwSDBWMGg0MHpNMjAgMjBhMSAxIDAgMTEwLTIgMSAxIDAgMDEwIDJ6IiBmaWxsPSIjRjdGMUUxIiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48L2c+PC9zdmc+"
                 />
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-white text-xl font-medium mb-2">{treatment.title}</h3>
-                <p className="text-white/85 text-sm line-clamp-2">{treatment.description}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 xl:p-8 z-20">
+                <h3 className="text-white text-xl md:text-xl lg:text-2xl font-medium mb-2">{treatment.title}</h3>
+                <p className="text-white/90 text-sm md:text-base line-clamp-2">{treatment.description}</p>
               </div>
             </m.div>
           ))}
@@ -120,14 +122,14 @@ const ServicesHighlight: React.FC = () => {
         >
           <Link href="/tratamentos" className="inline-block">
             <button
-              onClick={(e) => {
+              onClick={() => {
                 console.log("Clique no botão 'Conheça todos os nossos tratamentos'");
                 // Não prevenir o comportamento padrão para permitir a navegação normal
               }}
-              className="bg-[#866D36] hover:bg-[#9d824b] text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
+              className="bg-[#866D36] hover:bg-[#9d824b] text-white px-8 py-3 md:px-8 md:py-4 lg:px-10 lg:py-4 xl:px-12 xl:py-5 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 text-base md:text-lg"
             >
               <span>Conheça todos os nossos tratamentos</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-5 md:w-5 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </button>
@@ -138,4 +140,4 @@ const ServicesHighlight: React.FC = () => {
   );
 };
 
-export default ServicesHighlight; 
+export default ServicesHighlight;

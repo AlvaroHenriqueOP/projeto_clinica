@@ -1,0 +1,116 @@
+/* Estilos para telas grandes */
+
+/* Breakpoints personalizados para telas maiores */
+@media screen and (min-width: 1536px) {
+  .container {
+    max-width: 1400px !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Aumentar espaçamento vertical */
+  .py-xl-16 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .py-xl-24 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+
+  .py-xl-32 {
+    padding-top: 8rem !important;
+    padding-bottom: 8rem !important;
+  }
+
+  /* Espaçamentos horizontais */
+  .px-xl-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Melhorias para o grid */
+  .grid-cols-xl-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Tamanho de texto para telas grandes */
+  .text-xl-6xl {
+    font-size: 3.75rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Margens customizadas */
+  .mb-xl-20 {
+    margin-bottom: 5rem !important;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1600px !important;
+  }
+
+  /* Melhor espaçamento para telas muito grandes */
+  .py-2xl-40 {
+    padding-top: 10rem !important;
+    padding-bottom: 10rem !important;
+  }
+  
+  .gap-2xl-12 {
+    gap: 3rem !important;
+  }
+  
+  /* Melhoria para imagens em telas grandes */
+  .xl-image-size {
+    width: 400px !important;
+    height: 300px !important;
+  }
+}
+
+/* Melhorias gerais para a rolagem */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Melhorias para o rolling gallery */
+.scroller {
+  width: 100%;
+}
+
+@media screen and (min-width: 1536px) {
+  .scroller .scroller__inner > div {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+  
+  .scroller .scroller__inner > div:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-xl);
+    z-index: 10;
+  }
+}
+
+/* Outras melhorias específicas para telas grandes */
+@media screen and (min-width: 1800px) {
+  body {
+    font-size: 1.125rem;
+  }
+  
+  h1 {
+    font-size: 4rem !important;
+  }
+  
+  h2 {
+    font-size: 3rem !important;
+  }
+  
+  .section-padding-2xl {
+    padding-top: 12rem !important;
+    padding-bottom: 12rem !important;
+  }
+}

@@ -10,34 +10,19 @@ interface GalleryImage {
   height: number;
 }
 
-interface RollingGalleryProps {
+interface SimpleGalleryProps {
   images: GalleryImage[];
-  speed?: number;
-  direction?: 'left' | 'right';
   className?: string;
 }
 
-/**
- * RollingGallery - Componente de galeria com rolagem automática
- * 
- * Este componente exibe uma galeria de imagens com rolagem automática
- * usando animação CSS para melhor performance.
- */
-export default function RollingGallery({
-  images,
-  direction = 'left',
-  className = '',
-}: RollingGalleryProps) {
-  const animationDuration = images.length * 5; // 5 segundos por imagem
-  const totalWidth = images.length * 320; // 320px por imagem (300px + 20px margin)
-
+export default function SimpleGallery({ images, className = '' }: SimpleGalleryProps) {
   return (
     <div className={`overflow-hidden ${className}`}>
       <div 
-        className="flex"
+        className="flex animate-scroll-left"
         style={{
-          width: `${totalWidth * 2}px`, // 2x o número de imagens para o loop
-          animation: `scroll-${direction} ${animationDuration}s linear infinite`
+          width: 'calc(300px * 15)', // 3x o número de imagens para o loop
+          animation: 'scroll-left 30s linear infinite'
         }}
       >
         {/* Primeiro conjunto */}
@@ -55,7 +40,6 @@ export default function RollingGallery({
               className="rounded-lg object-cover w-full h-full"
               loading="lazy"
               quality={85}
-              sizes="300px"
             />
           </div>
         ))}
@@ -75,7 +59,25 @@ export default function RollingGallery({
               className="rounded-lg object-cover w-full h-full"
               loading="lazy"
               quality={85}
-              sizes="300px"
+            />
+          </div>
+        ))}
+        
+        {/* Terceiro conjunto para transição suave */}
+        {images.map((image, index) => (
+          <div
+            key={`third-${index}`}
+            className="flex-shrink-0 mx-2 rounded-lg overflow-hidden"
+            style={{ width: 300, height: 200 }}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={300}
+              height={200}
+              className="rounded-lg object-cover w-full h-full"
+              loading="lazy"
+              quality={85}
             />
           </div>
         ))}
@@ -87,19 +89,10 @@ export default function RollingGallery({
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-320px * ${images.length}));
-          }
-        }
-        
-        @keyframes scroll-right {
-          0% {
-            transform: translateX(calc(-320px * ${images.length}));
-          }
-          100% {
-            transform: translateX(0);
+            transform: translateX(calc(-300px * 5)); /* Largura de um conjunto completo */
           }
         }
       `}</style>
     </div>
   );
-} 
+}

@@ -92,13 +92,6 @@
   --radius-full: 9999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -643,14 +636,180 @@ html {
 
 /* ... existing code ... */
 
+@layer base {
+  :root {
+    /* Modern Color Palette */
+    --modern-blue-50: #eff6ff;
+    --modern-blue-100: #dbeafe;
+    --modern-blue-200: #bfdbfe;
+    --modern-blue-300: #93c5fd;
+    --modern-blue-400: #60a5fa;
+    --modern-blue-500: #3b82f6;
+    --modern-blue-600: #2563eb;
+    --modern-blue-700: #1d4ed8;
+    --modern-blue-800: #1e40af;
+    --modern-blue-900: #1e3a8a;
+
+    --modern-indigo-50: #eef2ff;
+    --modern-indigo-100: #e0e7ff;
+    --modern-indigo-200: #c7d2fe;
+    --modern-indigo-300: #a5b4fc;
+    --modern-indigo-400: #818cf8;
+    --modern-indigo-500: #6366f1;
+    --modern-indigo-600: #4f46e5;
+    --modern-indigo-700: #4338ca;
+    --modern-indigo-800: #3730a3;
+    --modern-indigo-900: #312e81;
+
+    --modern-violet-50: #f5f3ff;
+    --modern-violet-100: #ede9fe;
+    --modern-violet-200: #ddd6fe;
+    --modern-violet-300: #c4b5fd;
+    --modern-violet-400: #a78bfa;
+    --modern-violet-500: #8b5cf6;
+    --modern-violet-600: #7c3aed;
+    --modern-violet-700: #6d28d9;
+    --modern-violet-800: #5b21b6;
+    --modern-violet-900: #4c1d95;
+
+    /* Modern Gradients */
+    --gradient-modern-primary: linear-gradient(135deg, var(--modern-blue-600) 0%, var(--modern-indigo-600) 100%);
+    --gradient-modern-secondary: linear-gradient(135deg, var(--modern-indigo-600) 0%, var(--modern-violet-600) 100%);
+    --gradient-modern-accent: linear-gradient(135deg, var(--modern-violet-600) 0%, var(--modern-blue-600) 100%);
+    
+    /* Modern Shadows */
+    --shadow-modern-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-modern-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+    --shadow-modern-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+    --shadow-modern-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+    --shadow-modern-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-modern-colored: 0 10px 25px -3px rgb(59 130 246 / 0.15), 0 4px 6px -2px rgb(59 130 246 / 0.05);
+
+    /* Modern Glass Effects */
+    --glass-backdrop: blur(16px) saturate(180%);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* Modern Utility Classes */
 @layer utilities {
-  /* Animações */
-  @keyframes pulse {
-    0% { transform: scale(0.8); opacity: 0.4; }
-    100% { transform: scale(1.2); opacity: 0.8; }
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+  }
+
+  .gradient-text-modern {
+    background: var(--gradient-modern-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shadow-modern-colored {
+    box-shadow: var(--shadow-modern-colored);
+  }
+
+  .animation-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animation-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .animation-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Modern Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Correções essenciais para responsividade e lacunas */
+body {
+  background: white !important;
+}
+
+/* Eliminar lacunas pretas entre seções */
+section {
+  margin: 0 !important;
+  position: relative;
+}
+
+/* Sobreposição ligeira entre seções para eliminar gaps */
+section + section {
+  margin-top: -1px !important;
+}
+
+/* Melhorias para telas grandes - apenas essenciais */
+@media screen and (min-width: 1536px) {
+  .container {
+    max-width: 1400px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
-  .animate-pulse-slow {
-    animation: pulse 4s infinite alternate;
+  /* Melhor espaçamento vertical em telas grandes */
+  .py-16 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .py-20 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  .lg\:py-28 {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* Otimizações de desempenho */
+.optimize-performance {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: auto;
+}
+
+/* Redução de animações para melhor performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

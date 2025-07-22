@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
+import * as fs from 'fs';
+import * as path from 'path';
+import sharp from 'sharp';
 
 const BLOG_IMAGES_DIR = path.join(process.cwd(), 'public', 'images', 'blog');
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'images', 'blog', 'compressed');

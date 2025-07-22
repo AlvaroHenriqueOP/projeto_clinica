@@ -1,0 +1,74 @@
+/* Estilos para corrigir lacunas entre seções */
+
+/* Remover qualquer espaçamento desnecessário entre seções */
+section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Eliminar a lacuna preta entre seções */
+section + section {
+  margin-top: -1px !important; /* Força as seções a se sobreporem ligeiramente */
+}
+
+/* Garantir que não haja gaps entre as seções */
+#home::after,
+#services::after,
+#about::after,
+#gallery::after,
+#partnerships::after,
+#testimonials::after,
+#contact::after {
+  content: "";
+  display: block;
+  height: 0;
+  width: 100%;
+}
+
+/* Corrigir cores de fundo para evitar lacunas pretas */
+body {
+  background-color: white;
+}
+
+main {
+  background-color: white;
+}
+
+/* Garantir que não haja margens entre seções */
+#services, 
+#about, 
+#gallery, 
+#partnerships, 
+#testimonials, 
+#contact {
+  position: relative;
+}
+
+/* Garantir que não haja bordas entre as seções */
+html, body {
+  overflow-x: hidden; /* Evita rolagem horizontal que pode mostrar gaps */
+}
+
+/* Corrigir problema de margins que podem criar gaps */
+.py-16, .py-20, .py-24, .py-28 {
+  padding-top: var(--padding-top, 4rem);
+  padding-bottom: var(--padding-bottom, 4rem);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Aplicar uma borda invisível para resolver problemas de renderização que causam lacunas */
+section {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+}
+
+/* Corrigir problemas específicos com lacunas em diferentes navegadores */
+@supports (-webkit-appearance: none) {
+  section {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

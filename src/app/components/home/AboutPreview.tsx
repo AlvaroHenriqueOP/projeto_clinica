@@ -8,7 +8,7 @@ import { FadeIn, FadeInUp } from '../shared/AnimationUtils';
 
 const AboutPreview: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Imagem com elementos decorativos */}

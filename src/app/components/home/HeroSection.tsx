@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { m } from '../shared/motion';
-import { PlaceholderImage } from '../shared/AnimationUtils';
-import Link from 'next/link';
 import Image from 'next/image';
 import { scrollToSection } from '@/lib/navigation';
 
@@ -29,268 +27,230 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] max-h-[900px] w-full overflow-hidden">
-      {/* Imagem de fundo com overlay mais sofisticado */}
+    <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-gradient-to-br from-gold-50 via-white to-gold-100/30">
+      {/* Background Pattern */}
       <div className="absolute inset-0 z-0">
-        <m.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent z-10" 
-        />
-        
-        {/* Degradê adicional para melhorar o visual */}
-        <m.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#866D36]/20 z-11" 
-        />
-        
-        {/* Usar Image do Next.js para otimização automática */}
-        <div className="relative w-full h-full">
-          <Image 
-            src="/images/clinica_hero.jpg" 
-            alt="Clínica Odontológica" 
-            fill
-            priority
-            quality={85}
-            sizes="100vw"
-            className={`object-cover transition-opacity duration-1000 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            style={{
-              objectPosition: "center 30%"
-            }}
-          />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold-200/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-gold-300/20 via-transparent to-transparent"></div>
       </div>
 
-      {/* Elementos decorativos com animações otimizadas */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* Círculos decorativos coloridos */}
-        <m.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.15 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-gradient-to-br from-[#866D36]/40 to-[#B09048]/30"
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 z-5">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        {/* Large decorative circles */}
+        <m.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-br from-gold-200/30 to-gold-300/20 blur-xl"
+        />
+        <m.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+          className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-gradient-to-tr from-gold-300/30 to-gold-400/20 blur-xl"
         />
         
-        <m.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="absolute bottom-40 -left-40 w-80 h-80 rounded-full bg-gradient-to-tr from-[#866D36]/30 to-[#B09048]/20"
+        {/* Floating geometric shapes */}
+        <m.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 3, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute top-20 right-20 w-16 h-16 bg-gradient-to-br from-gold-400/20 to-gold-500/20 rounded-2xl rotate-12"
         />
-        
-        {/* Partículas douradas */}
-        <div className="absolute inset-0">
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '20%', left: '10%', animation: 'pulse 3s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.1 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '70%', left: '80%', animation: 'pulse 4s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '40%', left: '25%', animation: 'pulse 3.5s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '65%', left: '15%', animation: 'pulse 2.8s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.4 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '30%', left: '60%', animation: 'pulse 4.2s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '80%', left: '40%', animation: 'pulse 3.7s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '35%', left: '90%', animation: 'pulse 3.2s infinite alternate' }}
-          ></m.div>
-          <m.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 0.5, delay: 1.7 }}
-            className="absolute w-1 h-1 bg-[#B09048] rounded-full"
-            style={{ top: '15%', left: '45%', animation: 'pulse 4.5s infinite alternate' }}
-          ></m.div>
-        </div>
+        <m.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 4, delay: 1, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute bottom-32 right-32 w-12 h-12 bg-gradient-to-br from-gold-400/20 to-gold-500/20 rounded-full"
+        />
+        <m.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 3.5, delay: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute top-1/3 left-20 w-8 h-8 bg-gradient-to-br from-gold-300/20 to-gold-400/20 rounded-lg rotate-45"
+        />
       </div>
       
-      {/* Estilos para animação das partículas */}
-      <style jsx>{`
-        @keyframes pulse {
-          0% { transform: scale(0.8); opacity: 0.4; }
-          100% { transform: scale(1.2); opacity: 0.8; }
-        }
-      `}</style>
-
-      {/* Conteúdo */}
-      <div className="container mx-auto max-w-7xl px-4 relative z-20">
-        <div className="max-w-3xl">
-          <m.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-block mb-3 px-4 py-1 bg-gold-50 text-[oklch(55%_0.12_80deg)] rounded-full text-sm font-medium border border-gold-100"
-          >
-            Clínica Odontológica Especializada
-          </m.span>
-          
-          <m.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-[oklch(40%_0.02_80deg)] mb-6"
-          >
-            Cuidando do seu <span className="text-[oklch(60%_0.12_80deg)]">sorriso</span> com tecnologia e carinho
-          </m.h1>
-          
-          <m.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-            className="text-xl md:text-2xl text-[oklch(50%_0.02_80deg)] mb-8"
-          >
-            Tecnologia de ponta aliada a profissionais experientes para trazer o melhor resultado para você
-          </m.p>
-          
-          <m.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <button 
-              onClick={() => handleScrollToSection('contact')}
-              className="bg-[#866D36] hover:bg-[#9d824b] text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center shadow-lg shadow-gold-300/20"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span>Fale Conosco</span>
-            </button>
-            
-            <button 
-              onClick={() => handleScrollToSection('services')}
-              className="border-2 border-gold-300 text-[oklch(55%_0.12_80deg)] hover:bg-gold-50 px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Nossos Tratamentos</span>
-            </button>
-          </m.div>
-          
-          {/* Navegação rápida */}
-          {isMounted && (
-            <m.div 
-              initial={{ opacity: 0, y: 20 }}
+      {/* Main Content */}
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full flex items-center relative z-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center w-full">
+          {/* Left Content */}
+          <div className="space-y-6 lg:space-y-8 max-w-2xl mx-auto lg:mx-0">
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-10 flex flex-wrap justify-center gap-6"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-6"
             >
-              <div className="flex items-center gap-6 text-sm text-[oklch(50%_0.02_80deg)]">
-                {[
-                  { name: 'Sobre', section: 'about' },
-                  { name: 'Serviços', section: 'services' },
-                  { name: 'Galeria', section: 'gallery' },
-                  { name: 'Convênios', section: 'partnerships' },
-                  { name: 'Depoimentos', section: 'testimonials' },
-                  { name: 'Contato', section: 'contact' },
-                ].map((item, index) => (
-                  <React.Fragment key={item.section}>
-                    <button
-                      onClick={() => {
-                        console.log(`Navegação rápida: ${item.name} (${item.section})`);
-                        handleScrollToSection(item.section);
-                      }}
-                      className="hover:text-[#866D36] transition-colors font-medium"
-                    >
-                      {item.name}
-                    </button>
-                    {index < 5 && <span className="w-1 h-1 rounded-full bg-[#866D36]/40"></span>}
-                  </React.Fragment>
-                ))}
+              {/* Badge */}
+              <m.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gold-50 to-gold-100 border border-gold-200/50 rounded-full text-gold-700 text-sm font-medium"
+              >
+                <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></div>
+                Clínica Odontológica Especializada
+              </m.div>
+              
+              {/* Main Heading */}
+              <m.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight"
+              >
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
+                  Cuidando do seu
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-gold-600 via-gold-700 to-gold-800 bg-clip-text text-transparent">
+                  sorriso
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
+                  com excelência
+                </span>
+              </m.h1>
+              
+              {/* Subtitle */}
+              <m.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl"
+              >
+                Tecnologia de ponta aliada a profissionais experientes para proporcionar o melhor cuidado odontológico em um ambiente acolhedor e moderno.
+              </m.p>
+            </m.div>
+            
+            {/* CTA Buttons */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
+              <button 
+                onClick={() => handleScrollToSection('contact')}
+                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 hover:shadow-xl hover:shadow-gold-500/25 hover:-translate-y-1"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  Agendar Consulta
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-gold-700 to-gold-800 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+              
+              <button 
+                onClick={() => handleScrollToSection('services')}
+                className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-gold-200 text-gold-700 hover:border-gold-400 hover:text-gold-800 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-3 bg-white/80 backdrop-blur-sm hover:bg-gold-50"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Nossos Tratamentos
+              </button>
+            </m.div>
+            
+            {/* Stats */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6 lg:gap-8 pt-4"
+            >
+              <div className="text-center px-2">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-700 bg-clip-text text-transparent">10+</div>
+                <div className="text-xs sm:text-sm text-slate-500 font-medium">Anos de experiência</div>
+              </div>
+              <div className="text-center px-2">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-700 bg-clip-text text-transparent">5k+</div>
+                <div className="text-xs sm:text-sm text-slate-500 font-medium">Pacientes atendidos</div>
+              </div>
+              <div className="text-center px-2">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-gold-600 to-gold-700 bg-clip-text text-transparent">15+</div>
+                <div className="text-xs sm:text-sm text-slate-500 font-medium">Especialistas</div>
               </div>
             </m.div>
-          )}
+          </div>
           
-          {/* Estatísticas */}
-          <m.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-12 grid grid-cols-3 gap-4"
-          >
-            <div className="text-center p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm">
-              <div className="text-2xl font-bold text-[#866D36]">10+</div>
-              <div className="text-sm text-gray-600">Anos de experiência</div>
-            </div>
-            <div className="text-center p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm">
-              <div className="text-2xl font-bold text-[#866D36]">5k+</div>
-              <div className="text-sm text-gray-600">Pacientes atendidos</div>
-            </div>
-            <div className="text-center p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm">
-              <div className="text-2xl font-bold text-[#866D36]">15+</div>
-              <div className="text-sm text-gray-600">Especialistas</div>
-            </div>
-          </m.div>
+          {/* Right Content - Image/Visual */}
+          <div className="hidden lg:flex justify-center xl:justify-end relative w-full">
+            <m.div
+              initial={{ opacity: 0, scale: 0.9, x: 100 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="relative"
+            >
+              {/* Main image container */}
+              <div className="relative z-10">
+                <div className="aspect-[4/5] w-full max-w-sm lg:max-w-md xl:max-w-lg relative rounded-3xl overflow-hidden shadow-2xl shadow-gold-500/20">
+                  <Image 
+                    src="/images/clinica_hero.jpg" 
+                    alt="Clínica Odontológica Moderna" 
+                    fill
+                    priority
+                    quality={90}
+                    sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 40vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gold-900/20 via-transparent to-transparent"></div>
+                </div>
+              </div>
+              
+              {/* Floating cards */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="absolute -top-4 -left-4 z-20"
+              >
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-teal-400 to-teal-500 rounded-xl flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-800">100% Seguro</div>
+                      <div className="text-sm text-slate-500">Protocolos rigorosos</div>
+                    </div>
+                  </div>
+                </div>
+              </m.div>
+              
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="absolute -bottom-4 -right-4 z-20"
+              >
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-gold-400 to-gold-500 rounded-xl flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-800">Tecnologia</div>
+                      <div className="text-sm text-slate-500">Equipamentos modernos</div>
+                    </div>
+                  </div>
+                </div>
+              </m.div>
+            </m.div>
+          </div>
         </div>
-      </div>
-      
-      {/* Círculos decorativos animados */}
-      <div className="absolute bottom-0 right-0 z-10 opacity-30">
-        <m.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="w-64 h-64 rounded-full bg-gold-300/30 absolute -bottom-20 -right-20"
-        />
-        <m.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: 0.5,
-          }}
-          className="w-96 h-96 rounded-full bg-gold-200/20 absolute bottom-10 -right-32"
-        />
       </div>
     </section>
   );

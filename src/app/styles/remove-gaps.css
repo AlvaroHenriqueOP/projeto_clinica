@@ -1,0 +1,37 @@
+/* Remove gaps.css - Solução específica para eliminar lacunas pretas entre seções */
+
+/* Força o fundo da página a ser branco */
+body {
+  background: white !important;
+}
+
+/* Remover margens e paddings que podem causar lacunas */
+main > div > section {
+  position: relative;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Adicionar um elemento que sobreponha qualquer lacuna */
+main > div > section::after {
+  content: "";
+  position: absolute;
+  height: 2px; /* Altura suficiente para cobrir qualquer linha */
+  background: inherit; /* Usa a mesma cor de fundo da seção */
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+/* Garantir que as seções se sobreponham ligeiramente */
+main > div > section + section {
+  margin-top: -1px !important;
+}
+
+/* Resolver problemas específicos de renderização em alguns navegadores */
+main, section {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

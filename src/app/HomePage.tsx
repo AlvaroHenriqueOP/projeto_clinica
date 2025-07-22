@@ -24,14 +24,47 @@ const RollingGallery = dynamic(() => import('./components/home/RollingGallery'),
 
 // Componentes de placeholder para Suspense
 const ServicesPlaceholder = () => (
-  <div className="py-16 bg-[oklch(98%_0.01_80deg)] h-[600px] flex items-center justify-center">
-    <div className="animate-pulse text-gray-400">Carregando serviços...</div>
+  <div className="py-20 bg-gradient-to-b from-slate-50/50 to-white">
+    <div className="container mx-auto max-w-7xl px-4">
+      <div className="text-center mb-16">
+        <div className="h-6 w-32 bg-gradient-to-r from-slate-200 to-slate-300 rounded-full mx-auto mb-6 animate-pulse"></div>
+        <div className="h-12 w-96 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mx-auto mb-6 animate-pulse"></div>
+        <div className="h-4 w-80 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mx-auto animate-pulse"></div>
+      </div>
+      <div className="grid md:grid-cols-3 gap-8">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-slate-200/50">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-xl mb-4 animate-pulse"></div>
+            <div className="h-6 w-32 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mb-3 animate-pulse"></div>
+            <div className="space-y-2">
+              <div className="h-3 w-full bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
+              <div className="h-3 w-4/5 bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 );
 
 const SectionPlaceholder = () => (
-  <div className="py-16 bg-white h-[400px] flex items-center justify-center">
-    <div className="animate-pulse text-gray-400">Carregando conteúdo...</div>
+  <div className="py-20 bg-gradient-to-b from-white to-slate-50/30">
+    <div className="container mx-auto max-w-7xl px-4">
+      <div className="text-center mb-16">
+        <div className="h-6 w-32 bg-gradient-to-r from-slate-200 to-slate-300 rounded-full mx-auto mb-6 animate-pulse"></div>
+        <div className="h-12 w-80 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mx-auto mb-6 animate-pulse"></div>
+        <div className="h-4 w-96 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mx-auto animate-pulse"></div>
+      </div>
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="space-y-6">
+          <div className="h-6 w-3/4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg animate-pulse"></div>
+          <div className="h-4 w-full bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
+          <div className="h-4 w-5/6 bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
+          <div className="h-10 w-32 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-lg animate-pulse"></div>
+        </div>
+        <div className="aspect-video bg-gradient-to-r from-slate-200 to-slate-300 rounded-2xl animate-pulse"></div>
+      </div>
+    </div>
   </div>
 );
 
@@ -39,7 +72,7 @@ const SectionPlaceholder = () => (
 const PartnershipsSection = dynamic(() => import('./components/home/PartnershipsSection'), {
   ssr: false,
   loading: () => (
-    <div className="py-16 bg-gradient-to-br from-[#f9f5ec] to-[#f3eddf] h-[300px] flex items-center justify-center">
+    <div className="py-12 bg-gradient-to-br from-[#f9f5ec] to-[#f3eddf] h-[250px] flex items-center justify-center">
       <div className="animate-pulse text-gray-400">Carregando convênios...</div>
     </div>
   )
@@ -137,113 +170,116 @@ export default function HomePage() {
   }, [isMounted]);
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
-      {/* Elementos decorativos de fundo */}
+    <main className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 to-white">
+      {/* Modern background elements */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        {/* Círculo decorativo superior esquerdo */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-br from-[oklch(97%_0.03_80deg)] to-[oklch(95%_0.06_80deg)] opacity-70 blur-xl"></div>
+        {/* Gradient orbs */}
+        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100/40 via-indigo-100/30 to-violet-100/20 blur-3xl"></div>
+        <div className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-gradient-to-tl from-purple-100/30 via-pink-100/20 to-rose-100/10 blur-2xl"></div>
+        <div className="absolute bottom-32 -left-20 w-72 h-72 rounded-full bg-gradient-to-tr from-cyan-100/30 via-teal-100/20 to-emerald-100/10 blur-2xl"></div>
         
-        {/* Retângulo decorativo direito */}
-        <div className="absolute top-1/4 -right-20 w-80 h-96 rounded-3xl bg-gradient-to-tl from-[oklch(98%_0.01_80deg)] to-white rotate-12 opacity-80"></div>
+        {/* Floating geometric shapes */}
+        <div className="absolute top-20 right-20 w-4 h-4 bg-blue-400/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-40 w-2 h-2 bg-indigo-400/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-violet-400/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-60 left-40 w-2 h-2 bg-purple-400/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         
-        {/* Padrão de grade sutil */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBoLTQweiIvPjxwYXRoIGQ9Ik00MCAwdjQwSDBWMGg0MHpNMjAgMjBhMSAxIDAgMTEwLTIgMSAxIDAgMDEwIDJ6IiBmaWxsPSIjRjdGMUUxIiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48L2c+PC9zdmc+')] opacity-40"></div>
-        
-        {/* Bloco decorativo inferior */}
-        <div className="absolute bottom-10 left-1/4 w-64 h-64 rounded-3xl bg-gradient-to-tr from-white to-[oklch(97%_0.03_80deg)] -rotate-12 opacity-70"></div>
-        
-        {/* Círculo decorativo inferior direito */}
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-bl from-[oklch(95%_0.06_80deg)] to-[oklch(97%_0.03_80deg)] opacity-60 blur-lg"></div>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:20px_20px] opacity-30"></div>
       </div>
       
-      {/* Seções de conteúdo */}
+      {/* Content sections */}
       <div className="relative z-10">
         <section id="home">
           <HeroSection />
         </section>
         
-        <section id="services" className="bg-[oklch(98%_0.01_80deg)] relative">
+        <section id="services" className="relative py-20 bg-gradient-to-b from-slate-50/50 to-white">
           <Suspense fallback={<ServicesPlaceholder />}>
             <ServicesHighlight />
           </Suspense>
         </section>
         
-        <section id="about">
+        <section id="about" className="relative py-20 bg-gradient-to-b from-white to-slate-50/30">
           <Suspense fallback={<SectionPlaceholder />}>
             <AboutPreview />
           </Suspense>
         </section>
         
-        {/* Galeria de imagens com carregamento lazy */}
-        <section id="gallery" className="py-16 bg-[oklch(98%_0.01_80deg)]">
+        {/* Modern Gallery section */}
+        <section id="gallery" className="relative py-20 bg-gradient-to-b from-slate-50/30 to-blue-50/20">
           <div className="container mx-auto max-w-7xl px-4">
             <m.div 
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <m.span 
-                className="text-[#866D36] font-medium text-sm uppercase tracking-wider"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+              <m.div 
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-full text-blue-700 text-sm font-medium mb-6"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 Conheça nosso espaço
-              </m.span>
+              </m.div>
+              
               <m.h2 
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2 mb-4"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
               >
-                Nossa Clínica em Imagens
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
+                  Nossa Clínica em
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                  Imagens
+                </span>
               </m.h2>
-              <m.div 
-                className="w-24 h-1 bg-[#866D36] mx-auto mb-6"
-                initial={{ width: 0 }}
-                whileInView={{ width: 96 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              ></m.div>
+              
               <m.p 
-                className="text-gray-600 max-w-2xl mx-auto"
+                className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
                 Conheça nosso ambiente moderno e acolhedor, projetado para proporcionar o máximo conforto durante seu atendimento
               </m.p>
             </m.div>
             
-            <RollingGallery 
-              images={galleryImages1}
-              className="mb-8"
-            />
-            
-            <RollingGallery 
-              images={galleryImages2}
-              direction="right"
-            />
+            <div className="space-y-8">
+              <RollingGallery 
+                images={galleryImages1}
+                className=""
+              />
+              
+              <RollingGallery 
+                images={galleryImages2}
+                direction="right"
+              />
+            </div>
           </div>
         </section>
         
-        {/* Seção de convênios */}
-        <section id="partnerships">
+        {/* Modern partnerships section */}
+        <section id="partnerships" className="relative py-20 bg-gradient-to-b from-blue-50/20 to-indigo-50/30">
           <PartnershipsSection />
         </section>
         
-        <section id="testimonials" className="bg-[oklch(97%_0.03_80deg)] relative">
+        <section id="testimonials" className="relative py-20 bg-gradient-to-b from-indigo-50/30 to-violet-50/20">
           <Suspense fallback={<SectionPlaceholder />}>
             <Testimonials />
           </Suspense>
         </section>
         
-        <section id="contact">
+        <section id="contact" className="relative bg-gradient-to-b from-violet-50/20 to-slate-50">
           <Suspense fallback={<SectionPlaceholder />}>
             <ContactSection />
           </Suspense>
@@ -251,4 +287,4 @@ export default function HomePage() {
       </div>
     </main>
   );
-} 
+}

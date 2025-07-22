@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const COMPRESSED_DIR = path.join(process.cwd(), 'public', 'compressed');
