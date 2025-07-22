@@ -32,6 +32,10 @@
   --gray-700: #504B3D;
   --gray-800: #383426;
   --gray-900: #201E16;
+
+  /* Custom max widths for large screens */
+  --max-w-8xl: 88rem;
+  --max-w-9xl: 96rem;
   
   /* Cores de Apoio */
   --teal-50: #F0FDF9;
@@ -503,6 +507,15 @@ body {
 /* === SMOOTH SCROLL === */
 html {
   scroll-behavior: smooth;
+}
+
+/* === TAILWIND CSS v4 CUSTOM UTILITIES === */
+@utility max-w-8xl {
+  max-width: var(--max-w-8xl);
+}
+
+@utility max-w-9xl {
+  max-width: var(--max-w-9xl);
 }
 
 /* ======================

@@ -34,7 +34,7 @@ const ServicesPlaceholder = () => (
       <div className="grid md:grid-cols-3 gap-8">
         {[1, 2, 3].map((i) => (
           <div key={i} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-slate-200/50">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-xl mb-4 animate-pulse"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-gold-200 to-gold-300 rounded-xl mb-4 animate-pulse"></div>
             <div className="h-6 w-32 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg mb-3 animate-pulse"></div>
             <div className="space-y-2">
               <div className="h-3 w-full bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
@@ -60,7 +60,7 @@ const SectionPlaceholder = () => (
           <div className="h-6 w-3/4 bg-gradient-to-r from-slate-200 to-slate-300 rounded-lg animate-pulse"></div>
           <div className="h-4 w-full bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
           <div className="h-4 w-5/6 bg-gradient-to-r from-slate-200 to-slate-300 rounded animate-pulse"></div>
-          <div className="h-10 w-32 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-lg animate-pulse"></div>
+          <div className="h-10 w-32 bg-gradient-to-r from-gold-200 to-gold-300 rounded-lg animate-pulse"></div>
         </div>
         <div className="aspect-video bg-gradient-to-r from-slate-200 to-slate-300 rounded-2xl animate-pulse"></div>
       </div>
@@ -174,15 +174,15 @@ export default function HomePage() {
       {/* Modern background elements */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         {/* Gradient orbs */}
-        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100/40 via-indigo-100/30 to-violet-100/20 blur-3xl"></div>
-        <div className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-gradient-to-tl from-purple-100/30 via-pink-100/20 to-rose-100/10 blur-2xl"></div>
-        <div className="absolute bottom-32 -left-20 w-72 h-72 rounded-full bg-gradient-to-tr from-cyan-100/30 via-teal-100/20 to-emerald-100/10 blur-2xl"></div>
+        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-gold-100/40 via-gold-200/30 to-gold-300/20 blur-3xl"></div>
+        <div className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-gradient-to-tl from-gold-200/30 via-gold-100/20 to-gold-50/10 blur-2xl"></div>
+        <div className="absolute bottom-32 -left-20 w-72 h-72 rounded-full bg-gradient-to-tr from-gold-300/30 via-gold-200/20 to-gold-100/10 blur-2xl"></div>
         
         {/* Floating geometric shapes */}
-        <div className="absolute top-20 right-20 w-4 h-4 bg-blue-400/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-40 w-2 h-2 bg-indigo-400/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-20 w-3 h-3 bg-violet-400/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-60 left-40 w-2 h-2 bg-purple-400/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-20 right-20 w-4 h-4 bg-gold-400/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-40 w-2 h-2 bg-gold-500/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-gold-400/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-60 left-40 w-2 h-2 bg-gold-500/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:20px_20px] opacity-30"></div>
